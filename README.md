@@ -15,7 +15,8 @@ of the distribution.
 
 DGBDs not only fit well to Rank-Abundance Distributions, but also to
 ordering distributions in other biological systems and fields. Read
-further in Martinez-Mekler et al. (2009) DGBDs are described by 3
+further in Martinez-Mekler et al. (2009)
+<https://doi.org/10.1371/journal.pone.0004791> DGBDs are described by 3
 parameters: ‘A’, ‘a’ and ‘b’. This ‘R’ package fits a DGBD to a given
 set of abundance data, reports these parameters and uses ‘ggplot2’ to
 graph the model.
@@ -28,9 +29,9 @@ You can install the development version of DGBD like so:
 devtools::install_github("Fa-Moe/DGBD")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+You can quickly analyze philoseq-class objects and data frames.
 
 ``` r
 library(DGBD)
@@ -61,3 +62,17 @@ Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(
     #> [1] 0.9666311
 
 <img src="man/figures/README-example-2.png" width="100%" />
+
+``` r
+
+BC_report(hmp_wgs,2)
+#> [1] "The data fit the DGB distribution with parameters:"
+#>                  A          a        b
+#> 2.5%  4.591541e-11 -0.4345076 5.086016
+#> 50%   2.018236e-10 -0.6208510 5.272359
+#> 97.5% 8.871265e-10 -0.8071944 5.458703
+#> [1] "And the fit has an R2 of:"
+#> [1] 0.9614078
+```
+
+<img src="man/figures/README-example-3.png" width="100%" />
