@@ -1,0 +1,37 @@
+    #scale_y_log10()+
+    #stat_function(fun=BC_func,color="black",alpha=show_func*1)+
+    #theme_tufte()+
+    geom_point(color="#ad8c79",size=2)+
+    geom_line(aes(x=BC_data[,"radBC_rank"],y=BC_data[,"predicted_values"]),color="black",alpha=show_pred_val*1,lwd=0.5)+
+    geom_ribbon(aes(x=BC_data[,"radBC_rank"], ymax=BC_data[,"upr"], ymin=BC_data[,"lwr"]), fill="#ffd078", alpha=0.5)+
+    geom_line(aes(y = BC_data[,"upr"]), colour = "#ed8666",lwd=1)+
+    geom_line(aes(y = BC_data[,"lwr"]), colour = "#ed8666",lwd=1)+
+    coord_trans(y = "log10")
+    #theme(panel.background=element_rect(fill="#fff5ed",color="#fff5ed"))
+
+
+
+
+library(vegan)
+library(ggplot2)
+library(phyloseq)
+
+library(MGnifyR)
+
+mgnify_study_accession <- "MGYS00001918"
+mg <- mgnify_client(usecache = T, cache_dir = 'D:/Descargas 27 sept en adelante')
+
+analyses_accessions <- mgnify_analyses_from_studies(mg, mgnify_study_accession)
+analyses_accessions
+analyses_metadata_df <- mgnify_get_analyses_metadata(mg, head(analyses_accessions, 30));
+t(head(analyses_metadata_df))
+analyses_ps <- mgnify_get_analyses_phyloseq(mg, analyses_metadata_df$analysis_accession, tax_SU = "SSU")
+mul_analysis<-BC_fromphyloseq(analyses_ps,silent3=F)
+
+BC_multiple(iris,specific_columns = -c(5))
+
+phyloseq::GlobalPatterns
+phyloseq::data-enterotype
+help(GlobalPatterns)
+getNamespaceExports("phyloseq")
+

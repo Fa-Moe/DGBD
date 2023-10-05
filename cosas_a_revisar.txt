@@ -1,0 +1,3 @@
+El nombre de la distribución
+La documentación de tara_data
+Nombre de funciones.

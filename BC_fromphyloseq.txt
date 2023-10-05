@@ -1,0 +1,19 @@
+#' BC_multiple for Phyloseq-Class Objects
+#'
+#' @param phyloseq_object A phyloseq-class Object to analyze. Must contain an otu_table.
+#' @param column_phyloseq_sample Optional. A vector that contains either sample name strings or numeric sample indices (columns) to be analyzed. By default includes all samples.
+#' @param phyloseq_silent Logical. Whether to hide BC_multiple-style progress messages. Defaults to true.
+#' @param ... passes arguments to \code{BC_multiple}.
+#'
+#' @return A BC_multiple output data frame that includes all analyzed phyloseq samples.
+#' @export
+#'
+#' @examples
+#' BC_fromphyloseq(Tara_Data)
+#'
+
+BC_fromphyloseq <- function(phyloseq_object,column_phyloseq_sample=NULL, phyloseq_silent=TRUE,...){
+  temp_phylo_frame <- as.data.frame(phyloseq::otu_table(phyloseq_object))
+  t_phylo_analysis <- BC_multiple(df_abundance=temp_phylo_frame, columns_select_multiple=column_phyloseq_sample,supress_messages=phyloseq_silent,...)
+  return(t_phylo_analysis)
+}

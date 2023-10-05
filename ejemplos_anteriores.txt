@@ -1,0 +1,26 @@
+#' BC_param(datasets::iris,"Petal.Length")
+#'
+#' BC_param(datasets::PlantGrowth,1,confidence_interval=0.99)
+#'
+#' BC_param(datasets::ToothGrowth,"len",confidence_interval=0.999)
+
+
+#' BC_model(datasets::iris,"Petal.Length")
+#'
+#' BC_model(datasets::PlantGrowth,1)
+#'
+#' BC_model(datasets::ToothGrowth,"len")
+
+
+#' BC_plot(datasets::iris,1,obs_size=2,confint=FALSE)
+#'
+#' BC_plot(datasets::PlantGrowth,"weight")
+#'
+#' BC_plot(datasets::ToothGrowth,"len",confint=FALSE,confrange=FALSE,model_width=2)
+
+
+#' BC_report(datasets::iris,1)
+#'
+#' BC_report(datasets::PlantGrowth,"weight",show_plot=FALSE)
+#'
+#' BC_report(datasets::ToothGrowth,"len",show_stats=FALSE)

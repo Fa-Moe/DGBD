@@ -1,0 +1,77 @@
+library(vegan)
+help(radfit)
+
+fit<-radfit(ceiling(c(rnorm(n=1000, mean = 5000, sd = 800))))
+fit
+radlattice(fit)
+help(rnorm)
+
+predict(fit)
+
+BC_plot(t(t(predict(fit))),4)[[7]]
+BC_param((t(t(predict(fit)[,1]))),1)
+
+
+rm(BC_data)
+predict(fit)[,5]
+...
+
+BC_multiple(datasets::iris,c(1:4))
+BC_
+Tara_Data
+
+BC_plot(t(t(c(100,10,8,4,2,2,2,1,1,1,1,1,1,1,1,1))),1,obs_size=2,confidence_interval=0.3)[[7]]
+BC_plot((t(t(predict(fit)[,1]))),1,confidence_interval=0.9999999999)[[7]]
+
+help(esophagus)
+t(head(analyses_metadata_df))
+mul_analysis<-BC_fromphyloseq(analyses_ps)
+sample_data(analyses_ps)
+guardado1 <- BC_param(t(t(c(100,10,8,4,2,2,2,1,1,1,1,1,1,1,1,1))),1)
+guardado2 <- BC_model(BC_param_object = guardado1)
+guardado3 <- BC_plot(BC_model_object = guardado2)
+guardado4 <- BC_report(BC_plot_object = guardado3)
+
+test_object <- t(t(c(100,10,8,4,2,2,2,1,1,1,1,1,1,1,1,1)))
+BC_multiple(test_object)
+BC_param(test_object,1)
+BC_model(test_object,1)
+BC_plot(test_object,1)
+BC_report(test_object,1)
+colnames(test_object)
+abundance_column<- NULL
+!is.null(abundance_column)
+
+obj1 <- t(t(c(1,2,23,12,421,34,1,24,124)))
+obj2 <- t(t(c(3,5,45,746,42,5,1243,1,24)))
+obj3 <- cbind(c(12,42,23,22,12,1,4,2,3,4),c(8,45,14,13,64,32,75,43,25,2))
+
+exper<-data.frame(obj1,obj2,obj3)
+colnames(exper) <- NULL
+
+BC_multiple(exper)
+BC_multiple(exper)
+BC_plot(exper,plot_column = 1,show_plot=T)
+
+save(analyses_ps,file="analyses_ps")
+
+dir <- "D:/class"
+class(dir)
+is.character(dir)
+help("read.csv")
+read.table("test.csv",sep=",")
+
+load("crosssecdata.RData")
+length(datatax[which(datatax[,"sample_id"]=="SRS2822941"),])
+
+
+
+}
+nombres<-c("obj1","obj2","obj3")
+nombrespath<-c("test1.csv","test2.csv","test3.csv")
+columnaspath<- list(c(2),c(2),c(2))
+Tara_Data2<- Tara_Data
+names_taras <- c("Tara_Data","Tara_Data2")
+BC_many(names_taras,is_phylo_class = T)
+BC_many(nombres)
+BC_many(nombrespath,use_paths = T,columns_many_select = columnaspath)
