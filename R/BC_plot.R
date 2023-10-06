@@ -19,6 +19,7 @@
 #' @param confrange_col Specify a color to use for the confidence interval shading.
 #' @param gfx_alpha Numeric. Modifies all of the graphed objects alpha. Default=0.75.
 #' @param gfx_title String. Changes the title of the graph.
+#' @param gfx_label Logical. Whether to show the used parameters and r2.
 #' @param plot_silent Logical. Whether to print to console the output list and plot the graph.
 #' @param ... passes arguments to \code{BC_model}.
 #'
@@ -35,7 +36,7 @@
 #' BC_plot(Tara_Data,column_plot=1,is_phyloseq=TRUE)
 #'
 
-BC_plot <- function(df_abundance=NULL,column_plot=NULL,BC_model_object=NULL,obs=TRUE,obs_shape=16,obs_col="#78a7ff",obs_size=1,model=TRUE,model_col="#000000",model_width=0.5,confint=TRUE,confint_col="#ed8666",confint_width=1,confrange=TRUE,confrange_col="#ffd078",gfx_alpha=0.75,gfx_title="Rank-Abundance Diagram",plot_silent=FALSE,...){
+BC_plot <- function(df_abundance=NULL,column_plot=NULL,BC_model_object=NULL,obs=TRUE,obs_shape=16,obs_col="#78a7ff",obs_size=1,model=TRUE,model_col="#000000",model_width=0.5,confint=TRUE,confint_col="#ed8666",confint_width=1,confrange=TRUE,confrange_col="#ffd078",gfx_alpha=0.75,gfx_title="Rank-Abundance Diagram",gfx_label=TRUE,plot_silent=FALSE,...){
   if(!is.null(BC_model_object)){temp_model <- BC_model_object}
   else if (!is.null(df_abundance)){temp_model <- BC_model(df_abundance,column_model=column_plot,...)}
   else {stop("Neither an abundance data frame or a BC_model_object were provided")}
@@ -54,11 +55,13 @@ BC_plot <- function(df_abundance=NULL,column_plot=NULL,BC_model_object=NULL,obs=
     ggplot2::annotate("label",
                       x = min(BC_data[,"BC_rank"])+mean(BC_data[,"BC_rank"])/5,
                       y = min(BC_data[,"abundance"])+mean(BC_data[,"abundance"])/10,
-                      label = paste("R2 = ",format(round(temp_model[[5]]$adj.r.squared, 4), nsmall = 4),
+                      label =
+              if (gfx_label){paste("R2 = ",format(round(temp_model[[5]]$adj.r.squared, 4), nsmall = 4),
                                     "\n","DGBD distribution parameters:",
                                     "\n","A=",format(round(temp_model[[2]]["A"], 4), nsmall = 4),
                                     "\n","a=",format(round(temp_model[[2]]["a"], 4), nsmall = 4),
-                                    "\n","b=",format(round(temp_model[[2]]["b"], 4), nsmall = 4)),
+                                    "\n","b=",format(round(temp_model[[2]]["b"], 4), nsmall = 4))}
+              else {NULL},
                       size=3)
   temp_model[[7]] <- temp_plot
   if(plot_silent){ invisible(temp_model) }
