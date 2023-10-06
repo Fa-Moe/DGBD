@@ -25,7 +25,7 @@ BC_report <- function(df_abundance=NULL,column_report=NULL,BC_plot_object=NULL,s
   if(show_stats){print("The data fit the DGB distribution with parameters:")}
   param_matrix <- rbind(t(t_BCplot[[3]])[1,],t_BCplot[[2]],t(t_BCplot[[3]])[2,])
   t_confint_names <- colnames(t_BCplot[[3]])
-  rownames(param_matrix) <- c(t_confint_names[2],"50 %", t_confint_names[2])
+  rownames(param_matrix) <- c(t_confint_names[1],"50 %", t_confint_names[2])
   colnames(param_matrix) <- c("A","a","b")
   if(show_stats){print(param_matrix)}
   if(show_stats){print("And the fit has an R2 of:")}
