@@ -27,6 +27,7 @@ DGBDs better model the tail regions of the distribution.
 
 DGBDs not only fit well to Rank-Abundance Distributions, but also to ordering 
 distributions in other biological systems and fields. Read further in Martinez-Mekler et al. (2009) https://doi.org/10.1371/journal.pone.0004791
+
 DGBDs are described by 3 parameters: 'A', 'a' and 'b'. This 'R' package
 fits a DGBD to a given set of abundance data, reports these parameters and
 uses 'ggplot2' to graph the model.
