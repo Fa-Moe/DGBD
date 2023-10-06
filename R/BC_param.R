@@ -35,7 +35,7 @@ BC_param <- function(df_abundance=NULL,column_param=NULL,confidence_interval=0.9
   names(params) <- c("A","a","b")
   conf_inter <- stats::predict(lfit, as.data.frame(cbind(log_abundance,log_den,log_num)), interval = "confidence", level = confidence_interval)
   conf_inter <- exp(conf_inter)
-  param_conf <- stats::confint(lfit)
+  param_conf <- stats::confint(lfit,level=confidence_interval)
   param_conf[1,] <- exp(param_conf[1,])
   param_conf[2,] <- -1*param_conf[2,]
   output_frame <- cbind(pre_numerator,pre_denominator,conf_inter[,2:3],ranked_frame)
