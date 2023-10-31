@@ -27,7 +27,7 @@ BC_param(
 A list with the following elements: The input data frame with added processed ranking data and predicted confidence interval values, the adjusted parameters, the confidence interval of the parameters, the linear model and a summary of the model.
 }
 \description{
-Estimates the parameters of the DGB distribution proposed in Martinez-Mekler et al. (2009) \doi{10.1371/journal.pone.0004791} for a given set of data.
+Estimates the parameters of the DGB distribution (also known as the Beta-Cocho distribution) proposed in Martinez-Mekler et al. (2009) \doi{10.1371/journal.pone.0004791} for a given set of data.
 \code{BC_param} calculates the log of the data and estimates the abundance from the ranking using a linear model.
 The coefficients of the linear model are then scaled for posterior use.
 }

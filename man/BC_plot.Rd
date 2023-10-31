@@ -22,6 +22,7 @@ BC_plot(
   confrange_col = "#ffd078",
   gfx_alpha = 0.75,
   gfx_title = "Rank-Abundance Diagram",
+  gfx_label = TRUE,
   plot_silent = FALSE,
   ...
 )
@@ -60,6 +61,8 @@ BC_plot(
 \item{gfx_alpha}{Numeric. Modifies all of the graphed objects alpha. Default=0.75.}
 
 \item{gfx_title}{String. Changes the title of the graph.}
+
+\item{gfx_label}{Logical. Whether to show the parameters used and r2.}
 
 \item{plot_silent}{Logical. Whether to print to console the output list and plot the graph.}
 

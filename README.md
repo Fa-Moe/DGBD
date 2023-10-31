@@ -24,7 +24,7 @@ and uses ‘ggplot2’ to graph the model.
 
 ## Installation
 
-You can install the development version of DGBD like so:
+Install the development version of DGBD like so:
 
 ``` r
 devtools::install_github("Fa-Moe/DGBD")
@@ -32,7 +32,7 @@ devtools::install_github("Fa-Moe/DGBD")
 
 ## Usage
 
-You can quickly analyze philoseq-class objects and data frames.
+Quickly analyze philoseq-class objects and data frames.
 
 ``` r
 library(DGBD)

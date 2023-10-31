@@ -19,7 +19,7 @@
 #' @param confrange_col Specify a color to use for the confidence interval shading.
 #' @param gfx_alpha Numeric. Modifies all of the graphed objects alpha. Default=0.75.
 #' @param gfx_title String. Changes the title of the graph.
-#' @param gfx_label Logical. Whether to show the used parameters and r2.
+#' @param gfx_label Logical. Whether to show the parameters used and r2.
 #' @param plot_silent Logical. Whether to print to console the output list and plot the graph.
 #' @param ... passes arguments to \code{BC_model}.
 #'
