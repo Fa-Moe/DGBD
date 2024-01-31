@@ -1,6 +1,6 @@
 Package: DGBD
 Title: Discrete Generalized Beta Distribution Modeling and Plotting
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: c(
     person(given="Roberto",family="Alvarez Martinez",  role = c("aut", "cph"), comment = c(ORCID = "YOUR-ORCID-ID")),
     person(given="Francisco Farell",family="Moedano Vargas", email="farell.mova@gmail.com", role = c("aut", "cph", "cre"))

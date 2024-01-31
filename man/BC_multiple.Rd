@@ -9,6 +9,7 @@ BC_multiple(
   columns_select_multiple = NULL,
   is_phyloseq = FALSE,
   supress_messages = TRUE,
+  report_only = FALSE,
   ...
 )
 }
@@ -20,6 +21,8 @@ BC_multiple(
 \item{is_phyloseq}{Logical, optional. Use if the object to be analysed has the phyloseq class.}
 
 \item{supress_messages}{Logical. Allows to skip messages that detail how many samples have been processed. Also stops the resulting data frame from being printed. Defaults to true.}
+
+\item{report_only}{Logical. Use to output a data frame without the first column, intended to reduce the size of the output for large analyses. Defaults to false.}
 
 \item{...}{passes arguments to \code{BC_report} and \code{BC_plot}.}
 }
