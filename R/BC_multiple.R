@@ -20,7 +20,14 @@
 
 BC_multiple <- function(df_abundance, columns_select_multiple=NULL,is_phyloseq=FALSE,supress_messages=TRUE,report_only=FALSE,file_output_mode=FALSE,called_from_many=NULL, ...){
   df_abundance <- BC_file_format_handler(df_abundance,is_phyloseq,...)
-  if(!is.null(columns_select_multiple)){abundance_samples <- columns_select_multiple}
+  if(!is.null(columns_select_multiple))
+    {
+    abundance_samples <- columns_select_multiple
+    if (is.numeric(columns_select_multiple[1])&!is.null(colnames(df_abundance)))
+      {
+      abundance_samples <- colnames(df_abundance)[columns_select_multiple]
+      }
+    }
   else if (!is.null(colnames(df_abundance))){abundance_samples <- colnames(df_abundance)}
   else {abundance_samples <- 1:dim(df_abundance)[2]}
   multiple_analysis <- NULL
