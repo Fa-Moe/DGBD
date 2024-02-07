@@ -10,6 +10,8 @@ BC_multiple(
   is_phyloseq = FALSE,
   supress_messages = TRUE,
   report_only = FALSE,
+  file_output_mode = FALSE,
+  called_from_many = NULL,
   ...
 )
 }
@@ -22,7 +24,11 @@ BC_multiple(
 
 \item{supress_messages}{Logical. Allows to skip messages that detail how many samples have been processed. Also stops the resulting data frame from being printed. Defaults to true.}
 
-\item{report_only}{Logical. Use to output a data frame without the first column, intended to reduce the size of the output for large analyses. Defaults to false.}
+\item{report_only}{Logical. Use to output a data frame without the BC_plot object, intended to reduce the size of the output for large analyses. Defaults to false.}
+
+\item{file_output_mode}{Logical. Whether to provide all analysis inside the R environment (when false) or to packet BC_report results into files (when true). Recommended when analyzing very large datasets.}
+
+\item{called_from_many}{An object name passed from BC_many. Automatically handled.}
 
 \item{...}{passes arguments to \code{BC_report} and \code{BC_plot}.}
 }

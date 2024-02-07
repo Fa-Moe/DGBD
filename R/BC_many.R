@@ -30,7 +30,7 @@ BC_many <- function(object_names,columns_many_select=NULL,use_paths=FALSE,is_phy
   for (i in 1:object_length){
     if(use_paths){temp_object <- object_names[i]}
     else{temp_object <- get(object_names[i])}
-    temp_mul_analysis <- BC_multiple(df_abundance=temp_object,columns_select_multiple=columns_many_select[[i]],is_phyloseq=is_phylo_class,...)
+    temp_mul_analysis <- BC_multiple(df_abundance=temp_object,columns_select_multiple=columns_many_select[[i]],is_phyloseq=is_phylo_class,called_from_many=object_names[i],...)
     temp_mul_analysis <- cbind(temp_mul_analysis,object_names[i])
     many_analysis <- rbind(many_analysis,temp_mul_analysis)
     if (!supress_messages_many){print(paste("Processed object",i,"out of",object_length))}
