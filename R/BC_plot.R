@@ -56,7 +56,7 @@ BC_plot <- function(df_abundance=NULL,column_plot=NULL,BC_model_object=NULL,obs=
                       x = min(BC_data[,"BC_rank"])+mean(BC_data[,"BC_rank"])/5,
                       y = min(BC_data[,"abundance"])+mean(BC_data[,"abundance"])/10,
                       label =
-              if (gfx_label){paste("R2 = ",format(round(temp_model[[5]]$adj.r.squared, 4), nsmall = 4),
+              if (gfx_label){paste("R2 = ",format(round(stats::cor(temp_model[[1]][,"predicted_values"],temp_model[[1]][,"abundance"])^2, 4), nsmall = 4),
                                     "\n","DGBD distribution parameters:",
                                     "\n","A=",format(round(temp_model[[2]]["A"], 4), nsmall = 4),
                                     "\n","a=",format(round(temp_model[[2]]["a"], 4), nsmall = 4),
