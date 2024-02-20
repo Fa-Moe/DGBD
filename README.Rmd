@@ -48,7 +48,8 @@ Quickly analyze philoseq-class objects and data frames.
 ```{r example}
 library(DGBD)
 Tara_Data
-Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(1,3),plot_silent=T)
-
-BC_report(hmp_wgs,2)
+Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(1,2),plot_silent=T)
+Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(3),plot_silent=T)
+Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(3),plot_silent=T,nls=TRUE) #Generally the nls method is better at fitting the values on the left of the graph, while performing worse on the right side of the graph. Yet, the R2 tends to stay the same or increase when using the nls method.
+BC_report(hmp_wgs,2) 
 ```

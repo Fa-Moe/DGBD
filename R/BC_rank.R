@@ -4,6 +4,7 @@
 #'
 #' @param df_abundance The data frame to use. A string that contains a path can be used to load files.
 #' @param column_rank Which column will be ranked. Can be a string or a number.
+#' @param rank_threshold Numeric, optional. The abundance values to analyze in the sample have to be higher than this number. Defaults to 0.
 #' @param is_phyloseq Logical, optional. Use if the object to be analysed has the phyloseq class.
 #' @param ... passes arguments to \code{read.table}.
 #'
@@ -16,7 +17,7 @@
 #' BC_rank(Tara_Data,3,is_phyloseq=TRUE)
 #'
 
-BC_rank <- function(df_abundance,column_rank,is_phyloseq=FALSE,...){
+BC_rank <- function(df_abundance,column_rank,rank_threshold=0,is_phyloseq=FALSE,...){
   df_abundance <-BC_file_format_handler(df_abundance,is_phyloseq,...)
   if (!is.numeric(column_rank)){
     column_rank<-which(match(names(df_abundance),column_rank)==1)
@@ -29,7 +30,7 @@ BC_rank <- function(df_abundance,column_rank,is_phyloseq=FALSE,...){
   ordered_frame <- cbind(temp_2_rank,df_abundance)
   colnames(ordered_frame)[1] <- "BC_rank"
   colnames(ordered_frame)[1+column_rank] <- "abundance"
-  positive_rows <- which(ordered_frame[,1+column_rank]>0)
+  positive_rows <- which(ordered_frame[,1+column_rank]>rank_threshold)
   ordered_frame <- ordered_frame[positive_rows,]
   return(ordered_frame)
 }

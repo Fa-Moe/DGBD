@@ -29,7 +29,7 @@ BC_report <- function(df_abundance=NULL,column_report=NULL,BC_plot_object=NULL,s
   colnames(param_matrix) <- c("A","a","b")
   if(show_stats){print(param_matrix)}
   if(show_stats){print("And the fit has an R2 of:")}
-  r2<-t_BCplot[[5]]$adj.r.squared
+  r2<-stats::cor(t_BCplot[[1]][,"predicted_values"],t_BCplot[[1]][,"abundance"])^2
   if(show_stats){print(r2)}
   if(show_plot){plot(t_BCplot[[7]])}
   summary_output<-list(param_matrix,r2,t_BCplot[[7]])
