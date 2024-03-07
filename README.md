@@ -7,20 +7,16 @@
 <!-- badges: end -->
 
 Discrete Generalized Beta Distributions (DGBDs) are an alternative
-option to model Rank-Abundance Distributions in ecology. Power-law
-distributions are accurate for an intermediate range. Yet, they don’t
-fit the tail ends where the behavior is logarithmic. While they can be
-modified by additional parameters, DGBDs better model the tail regions
-of the distribution.
+to model Rank-Abundance Distributions in ecology. While power-law
+distributions offer  accuracy within an intermediate range, they fall short in capturing the logarithmic behavior at the distribution's tail ends. 
+Despite potential modifications through additional parameters, DGBDs offer a superior fit for these tail regions.
 
-DGBDs not only fit well to Rank-Abundance Distributions, but also to
-ordering distributions in other biological systems and fields. Read
-further in Martinez-Mekler et al. (2009)
-<https://doi.org/10.1371/journal.pone.0004791>
 
-DGBDs are described by 3 parameters: ‘A’, ‘a’ and ‘b’. This ‘R’ package
-fits a DGBD to a given set of abundance data, reports these parameters
-and uses ‘ggplot2’ to graph the model.
+Beyond their applicability to Rank-Abundance Distributions, DGBDs effectively model ordering distributions across various biological systems and disciplines. 
+For further insights, refer to Martinez-Mekler et al. (2009) at <https://doi.org/10.1371/journal.pone.0004791>.
+
+DGBDs are characterized by three parameters: 'A', 'a', and 'b'. This 'R' package facilitates fitting a DGBD to a given set of abundance data and reporting these parameters. It utilizes 'ggplot2' for visualizing the model.
+
 
 ## Installation
 
@@ -32,7 +28,7 @@ devtools::install_github("Fa-Moe/DGBD")
 
 ## Usage
 
-Quickly analyze philoseq-class objects and data frames.
+Quickly analyze phyloseq-class objects and data frames.
 
 ``` r
 library(DGBD)
@@ -77,8 +73,8 @@ Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(
 
 <img src="man/figures/README-example-3.png" width="100%" />
 
-Generally the nls method is better at fitting the values on the left of
-the graph, while performing worse on the right side of the graph. Yet,
+Generally, the nls method is better at fitting the values on the left of
+the graph while performing worse on the right side. Yet,
 the R2 tends to stay the same or increase when using the nls method.
 
 ``` r
