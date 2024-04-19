@@ -59,18 +59,19 @@ BC_multiple <- function(df_abundance, columns_select_multiple=NULL,is_phyloseq=F
     if (!supress_messages){print(paste("Processed sample",i,"out of",sample_amount))}
   }
   if (file_output_mode){
-    colnames(multiple_analysis) <- c("lwr_A","mid_A","upr_A","lwr_a","mid_a","upr_a","lwr_b","mid_b","upr_b","r2","SampleID")
+    conf_names <- rownames(temp_report[[1]])
+    colnames(multiple_analysis) <- c(paste0(conf_names[1],"_A",sep=""),paste0(conf_names[2],"_A",sep=""),paste0(conf_names[3],"_A",sep=""),paste0(conf_names[1],"_a",sep=""),paste0(conf_names[2],"_a",sep=""),paste0(conf_names[3],"_a",sep=""),paste0(conf_names[1],"_b",sep=""),paste0(conf_names[2],"_b",sep=""),paste0(conf_names[3],"_b",sep=""),"r2","SampleID")
     if (!is.null(called_from_many))
       {
         temp_name <- paste0(called_from_many,"_BC_report_frame")
         assign(temp_name,multiple_analysis)
-        save(get(temp_name),paste0(temp_name,".RData",sep=""))
+        save(list=temp_name,file=paste0(temp_name,".RData",sep=""))
       }
       else
       {
         temp_name <- paste0("BC_report_frame", sep = "")
         assign(temp_name,multiple_analysis)
-        save(get(temp_name),paste0(temp_name,".RData",sep=""))
+        save(list=temp_name,file=paste0(temp_name,".RData",sep=""))
       }
     }
   else{
