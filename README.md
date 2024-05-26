@@ -6,14 +6,10 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Discrete Generalized Beta Distributions (DGBDs) are an alternative
-to model Rank-Abundance Distributions in ecology. While power-law
-distributions offer  accuracy within an intermediate range, they fall short in capturing the logarithmic behavior at the distribution's tail ends. 
-Despite potential modifications through additional parameters, DGBDs offer a superior fit for these tail regions.
 
+Discrete Generalized Beta Distributions (DGBDs) provide a robust alternative for modeling Rank-Abundance Distributions. Traditional power-law distributions often offer accuracy within an intermediate range but struggle to capture the logarithmic behavior at the distribution's tail ends. While additional parameters can sometimes enhance power-law models, DGBDs inherently offer a superior fit for these critical tail regions.
 
-Beyond their applicability to Rank-Abundance Distributions, DGBDs effectively model ordering distributions across various biological systems and disciplines. 
-For further insights, refer to Martinez-Mekler et al. (2009) at <https://doi.org/10.1371/journal.pone.0004791>.
+Beyond their applicability to Rank-Abundance Distributions, DGBDs are effective in modeling ordering distributions across a wide array of biological systems and disciplines. This versatility makes them an invaluable tool for researchers in fields such as ecology, demography, bibliometrics, and more. For an in-depth exploration of DGBDs, please refer to Martínez-Mekler et al. (2009) at <https://doi.org/10.1371/journal.pone.0004791>.
 
 DGBDs are characterized by three parameters: 'A', 'a', and 'b'. This 'R' package facilitates fitting a DGBD to a given set of abundance data and reporting these parameters. It utilizes 'ggplot2' for visualizing the model.
 
