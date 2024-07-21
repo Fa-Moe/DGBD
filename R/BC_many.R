@@ -5,7 +5,7 @@
 #' @param object_names A vector containing the names of the objects to process.
 #' @param columns_many_select Optional. A list that contains vectors that indicate which columns to select for each processed object. Order must be matched with object_names.
 #' @param use_paths Optional. Set to true when the object_names vector uses paths instead of loaded objects.
-#' @param is_phylo_class Optional. Set to true if the objects to analyse have the phyloseq class.
+#' @param is_phyloseq Optional. Set to true if the objects to analyse have the phyloseq class.
 #' @param supress_messages_many Whether to hide the report progress that indicates how many objects are left to analyse. Also stops the resulting data frame from being printed. Defaults to true.
 #' @param ... Passes arguments to \code{BC_multiple}
 #'
@@ -22,7 +22,7 @@
 #' columns_to_use <-list(1,c(1,2),2)
 #' BC_many(to_analyze,columns_to_use)
 
-BC_many <- function(object_names,columns_many_select=NULL,use_paths=FALSE,is_phylo_class=FALSE,supress_messages_many=TRUE,...){
+BC_many <- function(object_names,columns_many_select=NULL,use_paths=FALSE,is_phyloseq=FALSE,supress_messages_many=TRUE,...){
   temp_object <- NULL
   temp_mul_analysis <- NULL
   many_analysis <- NULL
@@ -30,7 +30,7 @@ BC_many <- function(object_names,columns_many_select=NULL,use_paths=FALSE,is_phy
   for (i in 1:object_length){
     if(use_paths){temp_object <- object_names[i]}
     else{temp_object <- get(object_names[i])}
-    temp_mul_analysis <- BC_multiple(df_abundance=temp_object,columns_select_multiple=columns_many_select[[i]],is_phyloseq=is_phylo_class,called_from_many=object_names[i],...)
+    temp_mul_analysis <- BC_multiple(df_abundance=temp_object,columns_select_multiple=columns_many_select[[i]],is_phyloseq=is_phyloseq,called_from_many=object_names[i],...)
     temp_mul_analysis <- cbind(temp_mul_analysis,object_names[i])
     many_analysis <- rbind(many_analysis,temp_mul_analysis)
     if (!supress_messages_many){print(paste("Processed object",i,"out of",object_length))}

@@ -28,7 +28,7 @@ BC_multiple(
 
 \item{file_output_mode}{Logical. Whether to provide all analysis inside the R environment (when false) or to packet BC_report results into files (when true). Recommended when analyzing very large datasets.}
 
-\item{called_from_many}{An object name passed from BC_many. Automatically handled.}
+\item{called_from_many}{Automatically handled. An object name passed from BC_many.}
 
 \item{...}{passes arguments to \code{BC_report} and \code{BC_plot}.}
 }

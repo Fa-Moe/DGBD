@@ -12,6 +12,7 @@
 #' @param model Logical. Whether to show the models predicted data. Defaults to true.
 #' @param model_col Specify a color for the model.
 #' @param model_width Numeric. Changes the width of the lines to use for the model.
+#' @param model_extra String. Has to be one of: "MSE" (Mean Square Error),"S" (Standard error of the Estimate),"R2". Defaults to "MSE".
 #' @param confint Logical. Whether to add the confidence interval lines. Defaults to true.
 #' @param confint_col Specify a color for the confidence interval lines.
 #' @param confint_width  Numeric. Changes the width of the confidence interval lines.
@@ -19,11 +20,14 @@
 #' @param confrange_col Specify a color to use for the confidence interval shading.
 #' @param gfx_alpha Numeric. Modifies all of the graphed objects alpha. Default=0.75.
 #' @param gfx_title String. Changes the title of the graph.
-#' @param gfx_label Logical. Whether to show the parameters used and r2.
+#' @param gfx_label Logical. Whether to show the parameters used and model_extra info.
+#' @param gfx_label_coords A vector that provides custom x and y values to move the label.
+#' @param gfx_xy_trans A vector with 2 strings that define the ggplot2 transformations to be applied to the x and y scales. Defaults to c("identity","log10").
+#' @param gfx_theme Provide a ggplot2 theme function to use. Defaults to theme_gray().
 #' @param plot_silent Logical. Whether to print to console the output list and plot the graph.
 #' @param ... passes arguments to \code{BC_model}.
 #'
-#' @return A list with the following elements: The input data frame with added processed ranking data, model data and confidence interval data, the adjusted parameters, the confidence interval of the parameters, the linear model, a summary of the model, a generated function for use with raw numeric data and a ggplot2 object that shows the DGBD distribution and observed data.
+#' @return A list with the following elements: The input data frame with added processed ranking data, model data and confidence interval data, the adjusted parameters, the confidence interval of the parameters, the linear model, a summary of the model, a generated function for use with raw numeric data and a ggplot2 object that shows the DGBD distribution and observed data, a model_extra vector with 2 elements, model_extra name and value.
 #' @export
 #'
 #' @examples
@@ -36,11 +40,20 @@
 #' BC_plot(Tara_Data,column_plot=1,is_phyloseq=TRUE)
 #'
 
-BC_plot <- function(df_abundance=NULL,column_plot=NULL,BC_model_object=NULL,obs=TRUE,obs_shape=16,obs_col="#78a7ff",obs_size=1,model=TRUE,model_col="#000000",model_width=0.5,confint=TRUE,confint_col="#ed8666",confint_width=1,confrange=TRUE,confrange_col="#ffd078",gfx_alpha=0.75,gfx_title="Rank-Abundance Diagram",gfx_label=TRUE,plot_silent=FALSE,...){
+BC_plot <- function(df_abundance=NULL,column_plot=NULL,BC_model_object=NULL,obs=TRUE,obs_shape=16,obs_col="#78a7ff",obs_size=1,model=TRUE,model_col="#000000",model_width=0.5,model_extra="MSE",confint=TRUE,confint_col="#ed8666",confint_width=1,confrange=TRUE,confrange_col="#ffd078",gfx_alpha=0.75,gfx_title="Rank-Abundance Diagram",gfx_label=TRUE,gfx_label_coords=NULL,gfx_xy_trans=c("identity","log10"),gfx_theme=ggplot2::theme_gray(),plot_silent=FALSE,...){
   if(!is.null(BC_model_object)){temp_model <- BC_model_object}
   else if (!is.null(df_abundance)){temp_model <- BC_model(df_abundance,column_model=column_plot,...)}
   else {stop("Neither an abundance data frame or a BC_model_object were provided")}
   BC_data <- temp_model[[1]]
+  if(is.null(gfx_label_coords)){
+    x_l_coord<-min(BC_data[,"BC_rank"])+mean(BC_data[,"BC_rank"])/5
+    y_l_coord<-min(BC_data[,"abundance"])+mean(BC_data[,"abundance"])/10
+    }
+  else{
+    x_l_coord<-gfx_label_coords[1]
+    y_l_coord<-gfx_label_coords[2]
+    }
+  extra_stats <- c(model_extra,BC_GoF(values=BC_data,type=model_extra))
   temp_plot <- ggplot2::ggplot(data=as.data.frame(BC_data),ggplot2::aes(x=BC_data[,"BC_rank"],y=BC_data[,"abundance"]))+
     ggplot2::theme(text = ggplot2::element_text(family = "mono"))+
     ggplot2::geom_line(ggplot2::aes(x=BC_data[,"BC_rank"],y=BC_data[,"predicted_values"]),color=model_col,alpha=gfx_alpha*model,lwd=model_width)+
@@ -48,22 +61,24 @@ BC_plot <- function(df_abundance=NULL,column_plot=NULL,BC_model_object=NULL,obs=
     ggplot2::geom_line(ggplot2::aes(y = BC_data[,"upr"]), colour = confint_col,lwd=confint_width,alpha=gfx_alpha*confint)+
     ggplot2::geom_line(ggplot2::aes(y = BC_data[,"lwr"]), colour = confint_col,lwd=confint_width,alpha=gfx_alpha*confint)+
     ggplot2::geom_point(color=obs_col,size=obs_size,alpha=gfx_alpha*obs,shape=obs_shape)+
-    ggplot2::coord_trans(y = "log10")+
+    ggplot2::coord_trans(x=gfx_xy_trans[1],y=gfx_xy_trans[2])+
     ggplot2::labs(title=gfx_title,
                   x="Rank",
                   y="Abundance")+
     ggplot2::annotate("label",
-                      x = min(BC_data[,"BC_rank"])+mean(BC_data[,"BC_rank"])/5,
-                      y = min(BC_data[,"abundance"])+mean(BC_data[,"abundance"])/10,
+                      x = x_l_coord,
+                      y = y_l_coord,
                       label =
-              if (gfx_label){paste("R2 = ",format(round(stats::cor(temp_model[[1]][,"predicted_values"],temp_model[[1]][,"abundance"])^2, 4), nsmall = 4),
+              if (gfx_label){paste(extra_stats[1],"=",format(round(as.numeric(extra_stats[2]), 4), nsmall = 4),
                                     "\n","DGBD distribution parameters:",
                                     "\n","A=",format(round(temp_model[[2]]["A"], 4), nsmall = 4),
                                     "\n","a=",format(round(temp_model[[2]]["a"], 4), nsmall = 4),
                                     "\n","b=",format(round(temp_model[[2]]["b"], 4), nsmall = 4))}
               else {NULL},
-                      size=3)
+                      size=3)+
+    gfx_theme
   temp_model[[7]] <- temp_plot
+  temp_model[[8]] <- extra_stats
   if(plot_silent){ invisible(temp_model) }
   else { return(temp_model) }
 

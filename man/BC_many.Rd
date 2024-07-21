@@ -8,7 +8,7 @@ BC_many(
   object_names,
   columns_many_select = NULL,
   use_paths = FALSE,
-  is_phylo_class = FALSE,
+  is_phyloseq = FALSE,
   supress_messages_many = TRUE,
   ...
 )
@@ -20,7 +20,7 @@ BC_many(
 
 \item{use_paths}{Optional. Set to true when the object_names vector uses paths instead of loaded objects.}
 
-\item{is_phylo_class}{Optional. Set to true if the objects to analyse have the phyloseq class.}
+\item{is_phyloseq}{Optional. Set to true if the objects to analyse have the phyloseq class.}
 
 \item{supress_messages_many}{Whether to hide the report progress that indicates how many objects are left to analyse. Also stops the resulting data frame from being printed. Defaults to true.}
 

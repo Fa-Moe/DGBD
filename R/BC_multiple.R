@@ -8,7 +8,7 @@
 #' @param supress_messages Logical. Allows to skip messages that detail how many samples have been processed. Also stops the resulting data frame from being printed. Defaults to true.
 #' @param report_only Logical. Use to output a data frame without the BC_plot object, intended to reduce the size of the output for large analyses. Defaults to false.
 #' @param file_output_mode Logical. Whether to provide all analysis inside the R environment (when false) or to packet BC_report results into files (when true). Recommended when analyzing very large datasets.
-#' @param called_from_many An object name passed from BC_many. Automatically handled.
+#' @param called_from_many Automatically handled. An object name passed from BC_many.
 #' @param ... passes arguments to \code{BC_report} and \code{BC_plot}.
 #'
 #' @return A data frame where each row represents a fitted DGBD. The first column stores the BC_plot objects and the second column stores the BC_reports. Each object's output is stored inside of a list.
@@ -49,7 +49,7 @@ BC_multiple <- function(df_abundance, columns_select_multiple=NULL,is_phyloseq=F
       grDevices::pdf(temp_name, onefile = TRUE)
       print(temp_report[[3]])
       grDevices::dev.off()
-      temp_row <- c(temp_report[[1]][,1],temp_report[[1]][,2],temp_report[[1]][,3],temp_report[[2]],abundance_samples[i])
+      temp_row <- c(temp_report[[1]][,1],temp_report[[1]][,2],temp_report[[1]][,3],as.numeric(temp_report[[2]][2]),abundance_samples[i])
     }
     else{
       if (report_only) {temp_row <- c(I(list(temp_report)),abundance_samples[i])}
@@ -60,7 +60,7 @@ BC_multiple <- function(df_abundance, columns_select_multiple=NULL,is_phyloseq=F
   }
   if (file_output_mode){
     conf_names <- rownames(temp_report[[1]])
-    colnames(multiple_analysis) <- c(paste0(conf_names[1],"_A",sep=""),paste0(conf_names[2],"_A",sep=""),paste0(conf_names[3],"_A",sep=""),paste0(conf_names[1],"_a",sep=""),paste0(conf_names[2],"_a",sep=""),paste0(conf_names[3],"_a",sep=""),paste0(conf_names[1],"_b",sep=""),paste0(conf_names[2],"_b",sep=""),paste0(conf_names[3],"_b",sep=""),"r2","SampleID")
+    colnames(multiple_analysis) <- c(paste0(conf_names[1],"_A",sep=""),paste0(conf_names[2],"_A",sep=""),paste0(conf_names[3],"_A",sep=""),paste0(conf_names[1],"_a",sep=""),paste0(conf_names[2],"_a",sep=""),paste0(conf_names[3],"_a",sep=""),paste0(conf_names[1],"_b",sep=""),paste0(conf_names[2],"_b",sep=""),paste0(conf_names[3],"_b",sep=""),paste(temp_report[[2]][1]),"SampleID")
     if (!is.null(called_from_many))
       {
         temp_name <- paste0(called_from_many,"_BC_report_frame")

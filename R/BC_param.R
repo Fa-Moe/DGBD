@@ -23,7 +23,7 @@
 #' BC_param(Tara_Data,column_param=2,is_phyloseq=TRUE,confidence_interval=0.9)
 #'
 
-BC_param <- function(df_abundance=NULL,column_param=NULL,confidence_interval=0.95,nls=FALSE,nls_loop=1,nls_algo="lm",nls_control=list(scale = "levenberg"),BC_rank_object=NULL,...){
+BC_param <- function(df_abundance=NULL,column_param=NULL,confidence_interval=0.95,nls=FALSE,nls_loop=1,nls_algo="lm",nls_control=list(scale = "more"),BC_rank_object=NULL,...){
   if(!is.null(BC_rank_object)){ranked_frame <- BC_rank_object}
   else if (!is.null(df_abundance)){ranked_frame <- BC_rank(df_abundance,column_rank=column_param,...)}
   else {stop("Neither an abundance data frame or a BC_param_object were provided")}

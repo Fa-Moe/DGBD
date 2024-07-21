@@ -23,6 +23,7 @@ BC_rank <- function(df_abundance,column_rank,rank_threshold=0,is_phyloseq=FALSE,
     column_rank<-which(match(names(df_abundance),column_rank)==1)
   }
   if (!is.numeric(df_abundance[1,column_rank])){stop("The selected column does not store numeric values. If using paths, check the field separator characters and if file has headers.")}
+  df_abundance[1,column_rank] <- as.numeric(df_abundance[1,column_rank]) #While the class "integer" passes the as.numeric() check, the 'gslnls' package cannot accept "integer" class data.
   temp_rank <- order(df_abundance[,column_rank],decreasing=T)
   temp_2_rank <- NULL
   for (i in 1:length(temp_rank)){temp_2_rank[temp_rank[i]]<-i}

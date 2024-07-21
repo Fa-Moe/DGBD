@@ -11,7 +11,7 @@ BC_param(
   nls = FALSE,
   nls_loop = 1,
   nls_algo = "lm",
-  nls_control = list(scale = "levenberg"),
+  nls_control = list(scale = "more"),
   BC_rank_object = NULL,
   ...
 )

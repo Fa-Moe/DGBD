@@ -22,12 +22,12 @@ BC_report(
 
 \item{show_plot}{Logical. Whether to plot the DGB distribution. Defaults to true.}
 
-\item{show_stats}{Logical. Whether to print the parameters of the DGB distribution and its R2 to the console. Defaults to true.}
+\item{show_stats}{Logical. Whether to print the parameters of the DGB distribution and its model_extra to the console. Defaults to true.}
 
 \item{...}{passes arguments to \code{BC_plot}.}
 }
 \value{
-A list with the following elements: a matrix that contains the parameters used and their confidence intervals, the R2 and the DGBD plot.
+A list with the following elements: a matrix that contains the parameters used and their confidence intervals, the model_extra vector and the DGBD plot.
 }
 \description{
 Summarize the Modeled DGB Distribution

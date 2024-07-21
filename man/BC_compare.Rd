@@ -22,7 +22,7 @@ BC_compare(
 
 \item{c_gfx_title}{String. Changes the title of the graph.}
 
-\item{c_gfx_label}{Logical. Adds a label that adds the R2 of both models. Defaults to true.}
+\item{c_gfx_label}{Logical. Adds a label that adds the model_extra data of both models. Defaults to true.}
 
 \item{...}{passes arguments to \code{BC_plot}.}
 }

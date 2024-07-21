@@ -7,7 +7,7 @@
 #' @param column_compare Either a string with the name of the column or the number of the column that stores the abundances in the data frame.
 #' @param BC_plot_list A list that contains 2 objects previously generated with \code{BC_plot}. The first one must use the linear paramenters and the second one parameters estimated by the nls method.
 #' @param c_gfx_title String. Changes the title of the graph.
-#' @param c_gfx_label Logical. Adds a label that adds the R2 of both models. Defaults to true.
+#' @param c_gfx_label Logical. Adds a label that adds the model_extra data of both models. Defaults to true.
 #' @param ... passes arguments to \code{BC_plot}.
 #'
 #' @return A list with that includes a data frame with difference data between predicted and real values and
@@ -38,8 +38,6 @@ BC_compare <- function(df_abundance=NULL,column_compare=NULL,BC_plot_list=NULL,c
   ys_diff_type <- c(rep("linear",length(ys_data[,"y_linear"])), rep("nls",length(ys_data[,"y_nls"])))
   diff_data <-  as.data.frame(cbind(c(naive[[1]][,"BC_rank"],naive[[1]][,"BC_rank"]),ys_diffs,ys_diff_type))
   colnames(diff_data) <- c("Rank","Difference","Type")
-  linear_r2 <- stats::cor(ys_data[,"y_real"],ys_data[,"y_linear"])^2
-  nls_r2 <- stats::cor(ys_data[,"y_real"],ys_data[,"y_nls"])^2
 
   grafx_compare <- ggplot2::ggplot(data=diff_data,ggplot2::aes(x=as.numeric(diff_data[,"Rank"]),y=as.numeric(diff_data[,"Difference"]),group=diff_data[,"Type"],col=diff_data[,"Type"]))+
     ggplot2::geom_line()+
@@ -51,9 +49,9 @@ BC_compare <- function(df_abundance=NULL,column_compare=NULL,BC_plot_list=NULL,c
                       x = max(as.numeric(diff_data[,"Rank"]))*4/5,
                       y = max(as.numeric(diff_data[,"Difference"]))*4/5,
                       label =
-                        if (c_gfx_label){paste("R2 value of the different models",
-                                             "\n","linear =",format(round(linear_r2, 4), nsmall = 4),
-                                             "\n","nls =",format(round(nls_r2, 4), nsmall = 4)
+                        if (c_gfx_label){paste(naive[[8]][1]," value of the different models",
+                                             "\n","linear =",format(round(as.numeric(naive[[8]][2]), 4), nsmall = 4),
+                                             "\n","nls =",format(round(as.numeric(nls_obj[[8]][2]), 4), nsmall = 4)
                                              )}
                       else {NULL},
                       size=3)

@@ -1,3 +1,6 @@
 # DGBD (development version)
 
-* Initial CRAN submission.
+*Added more arguments to BC_plot()
+*Created package vignette
+
+#* Initial CRAN submission.
