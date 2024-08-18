@@ -33,7 +33,7 @@ BC_rank(df_abundance=DGBD::Weblinks, column_rank=2, rank_threshold=5) #In this e
 
 ```
 
-BC_param automatically imports the results from BC_rank and then fits them into the formula. New columns are added to the data frame with "pre_numerator" and "pre_denominator" names. These are then log() transformed and fitted to a linear model to approximate the 'A', 'a' and 'b' parameters. The parameters are then linearized for report. 
+The `BC_param` function imports results from `BC_rank` and incorporates them into the model formula. It creates two new columns in the data frame, denoted as `pre_numerator` and `pre_denominator.` These columns undergo log transformation and are then used to fit a linear model, estimating the parameters 'A,' 'a', and 'b.' Subsequently, the parameters are linearized and made ready for reporting.
 
 ```{r}
 #BC_param will call BC_rank, and then go through the described process.
