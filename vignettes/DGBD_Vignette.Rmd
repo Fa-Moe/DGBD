@@ -15,12 +15,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+This package includes functions to assist in conducting a step-by-step DGBD modeling process. The guide will walk you through each stage, explaining the purpose of each function and demonstrating how to customize the analysis according to your specific needs.
 
-The functions included in this package perform a DGBD modeling step by step. This Vignette follows the process along to explain what each function does, and how you can customize the analysis.
-
-BC_rank loads the frequency data from a data frame in the environment and ranks it. It has to be given a "column_rank" argument that points to the column we want to analyze.
-BC_rank automatically labels the used column as "abundance" for further processing.
-
+The `BC_rank` function imports frequency data from a specified data frame in your workspace and ranks it. You need to specify the `column_rank` parameter, which indicates the column containing the data you want to analyze. Once the ranking process is complete, the column is automatically labeled as **abundance** for smooth processing in subsequent stages.
 ```{r}
 library(DGBD)
 BC_rank(df_abundance=DGBD::Weblinks, column_rank=2)
