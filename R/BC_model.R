@@ -25,7 +25,7 @@ BC_model <- function(df_abundance=NULL,column_model=NULL,BC_param_object=NULL,..
   t_frame <- temp_data_list[[1]]
   params <- temp_data_list[[2]]
   #predicted_values <- params["A"]*t_frame[,"pre_numerator"]^params["b"]/(t_frame[,"pre_denominator"]^params["a"])
-  BC_predict <- function(rank){params["A"]*(max(rank)+1-rank)^params["b"]/(rank^params["a"])}
+  BC_predict <- function(rank){params["A"]*(max(t_frame[,"BC_rank"])+1-rank)^params["b"]/(rank^params["a"])}
   predicted_values <- BC_predict(t_frame[,"BC_rank"])
   predicted_values <- ifelse(predicted_values <= 0, .Machine$double.eps, predicted_values)
   predictive_frame <- cbind(t_frame[,1:3],predicted_values,t_frame[,4:length(t_frame[1,])])

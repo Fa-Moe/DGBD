@@ -18,7 +18,7 @@
 #' @param confint_width  Numeric. Changes the width of the confidence interval lines.
 #' @param confrange Logical. Whether to shade the area in the confidence interval. Defaults to true.
 #' @param confrange_col Specify a color to use for the confidence interval shading.
-#' @param gfx_alpha Numeric. Modifies all of the graphed objects alpha. Default=0.75.
+#' @param gfx_alpha Numeric. Modifies all the graphed objects alpha. Default=0.75.
 #' @param gfx_title String. Changes the title of the graph.
 #' @param gfx_label Logical. Whether to show the parameters used and model_extra info.
 #' @param gfx_label_coords A vector that provides custom x and y values to move the label.

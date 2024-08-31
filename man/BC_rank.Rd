@@ -15,9 +15,9 @@ BC_rank(
 \arguments{
 \item{df_abundance}{The data frame to use. A string that contains a path can be used to load files.}
 
-\item{column_rank}{Which column will be ranked. Can be a string or a number.}
+\item{column_rank}{Can be either a string containing the name of the column or an int that is its index}
 
-\item{rank_threshold}{Numeric, optional. The abundance values to analyze in the sample have to be higher than this number. Defaults to 0.}
+\item{rank_threshold}{Optional. Integer. Discards rows if their column_rank value is equal to or lower than it. Defaults to 0.}
 
 \item{is_phyloseq}{Logical, optional. Use if the object to be analysed has the phyloseq class.}
 
@@ -27,7 +27,7 @@ BC_rank(
 The input data frame with a column appended to the left that stores the generated ranking. The column used for ranking is renamed "abundance".
 }
 \description{
-Generates a ranking from a column that stores abundance information in a data frame or file.
+Sorts the df_abundance dataframe by the given column_rank column.
 }
 \examples{
 BC_rank(hmp_wgs,2)

@@ -1,25 +1,16 @@
 BC_GoF <- function(values=NULL,type=NULL,...){
  if (is.null(values)){stop("An error ocurred when retrieving model data in BC_plot()")}
+ n <- length(values[,"predicted_values"])
+ t_error <- values[,"predicted_values"]-values[,"abundance"]
+ sqerror <- t_error^2
+ ss_res <- sum(sqerror)
  if (type=="MSE"){
-   n <- length(values[,"predicted_values"])
-   t_error <- values[,"predicted_values"]-values[,"abundance"]
-   sqerror <- t_error^2
-   sqerror_sum <- sum(sqerror)
-   output <- sqerror_sum/n
+   output <- ss_res/n
  }
  else if (type=="S"){
-   n <- length(values[,"predicted_values"])
-   t_error <- values[,"predicted_values"]-values[,"abundance"]
-   sqerror <- t_error^2
-   sqerror_sum <- sum(sqerror)
-   output <- sqrt(sqerror_sum/(n-2))
+   output <- sqrt(ss_res/(n-2))
  }
  else if (type=="R2"){
-   t_error <- values[,"predicted_values"]-values[,"abundance"]
-   n <- length(values[,"predicted_values"])
-   sqerror <- t_error^2
-   ss_res <- sum(sqerror)
-
    t_mean <- mean(values[,"abundance"])
    t_tot <- values[,"abundance"]-t_mean
    sqtot <- t_tot^2

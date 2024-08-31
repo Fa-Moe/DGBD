@@ -64,7 +64,7 @@ BC_plot(
 
 \item{confrange_col}{Specify a color to use for the confidence interval shading.}
 
-\item{gfx_alpha}{Numeric. Modifies all of the graphed objects alpha. Default=0.75.}
+\item{gfx_alpha}{Numeric. Modifies all the graphed objects alpha. Default=0.75.}
 
 \item{gfx_title}{String. Changes the title of the graph.}
 

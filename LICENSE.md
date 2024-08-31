@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2023 DGBD authors
+Copyright (c) 2024 DGBD authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
