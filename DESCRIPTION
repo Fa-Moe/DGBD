@@ -2,8 +2,8 @@ Package: DGBD
 Title: Discrete Generalized Beta Distribution Modeling and Plotting
 Version: 0.0.0.9004
 Authors@R: c(
-    person(given="Francisco Farell",family="Moedano Vargas", email="farell.mova@gmail.com", role = c("aut", "cph", "cre")),
-    person(given="Roberto",family="Alvarez Martinez",  role = c("aut", "cph"), comment = c(ORCID = "YOUR-ORCID-ID"))
+    person(given="Francisco Farell",family="Moedano-Vargas", email="farell.mova@gmail.com", role = c("aut", "cph", "cre")),
+    person(given="Roberto",family="Alvarez-Martinez",  role = c("aut", "cph"), comment = c(ORCID = "0002-0821-0067"))
     )   
 Description: Process abundance data and estimate the parameters
     of a discrete generalized beta distribution (DGBD) (Martinez-Mekler et al., 2009) 
