@@ -10,7 +10,7 @@
 
 To cite this package:
 
-Moedano Vargas F, Alvarez Martinez R (2024). *DGBD: Discrete Generalized
+Moedano-Vargas F, Alvarez-Martinez R (2024). *DGBD: Discrete Generalized
 Beta Distribution Modeling and Plotting*. R package version 0.0.0.9004,
 <https://github.com/Fa-Moe/DGBD>.
 
