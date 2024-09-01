@@ -39,7 +39,7 @@ bibliometrics, and more. For an in-depth exploration of DGBDs, please
 refer to Martínez-Mekler et al. (2009) at
 <https://doi.org/10.1371/journal.pone.0004791>
 
-DGBDs are characterized by three parameters: ‘A’, ‘a’, and ‘b’. This ‘R’
+DGBDs are characterized by three parameters: **A**, **a**, and **b**. This *R*
 package facilitates fitting a DGBD to a given set of abundance data and
 reporting these parameters. It utilizes ‘ggplot2’ for visualizing the
 model.
