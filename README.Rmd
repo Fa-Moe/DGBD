@@ -56,9 +56,16 @@ Quickly analyze data frames and  philoseq-class objects.
 
 ```{r example}
 library(DGBD)
+<<<<<<< Updated upstream
 BC_report(Weblinks, column_report = 1, show_stats = F)
 BC_report(Billionaires, column_report = 1, show_stats = F,model_extra="S")
 BC_report(hmp_wgs, 2, show_stats = F,model_extra="R2",gfx_label_coords=c(50,1)) 
+=======
+#data("Billionaires")
+BC_plot(Billionaires,column_plot=2)
+BC_plot(df_abundance=DGBD::Weblinks, column_plot=2, rank_threshold=4, confidence_interval=0.985,suppress_messages=TRUE)
+#Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(3),plot_silent=T)
+>>>>>>> Stashed changes
 ```
 
 Generally the nls method is better at fitting the values on the left of the graph, while performing worse on the right side of the graph. BC_compare() can be used to compare both methods given a data set. The goodness of fit tends to stay the same or get better when using the nls method because the extremes are approximated better, however, most mid and low values accumulate more error. This "spreading out" effect might not be desirable, in which case the default method should be used.
