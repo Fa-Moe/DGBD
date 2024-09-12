@@ -16,6 +16,7 @@
 #' @examples
 #' BC_compare(hmp_wgs,2)
 #'
+#' BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")
 
 BC_compare <- function(df_abundance=NULL,column_compare=NULL,BC_plot_list=NULL,c_gfx_title="Linear vs nls model error",c_gfx_label=TRUE,...){
   if(!is.null(BC_plot_list)){

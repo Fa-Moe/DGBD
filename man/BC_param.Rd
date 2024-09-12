@@ -44,8 +44,8 @@ Estimates the parameters of the DGB distribution (also known as the Beta-Cocho d
 The coefficients of the linear model are then scaled for future use.
 }
 \examples{
-BC_param(hmp_wgs,2,confidence_interval=0.99)
+BC_param(df_abundance=DGBD::Billionaires, column_param= 2, confidence_interval=0.99)
 
-BC_param(Tara_Data,column_param=2,is_phyloseq=TRUE,confidence_interval=0.9)
+BC_param(df_abundance=DGBD::MOMv3.3, column_param=7, nls=TRUE)
 
 }

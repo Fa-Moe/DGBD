@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' BC_rank(hmp_wgs,2)
+#' BC_rank(df_abundance=DGBD::Weblinks, column_rank=2, rank_threshold=4)
 #'
 #' BC_rank(Tara_Data,3,is_phyloseq=TRUE)
 #'

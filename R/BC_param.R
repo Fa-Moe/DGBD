@@ -18,9 +18,9 @@
 #' @export
 #'
 #' @examples
-#' BC_param(hmp_wgs,2,confidence_interval=0.99)
+#' BC_param(df_abundance=DGBD::Billionaires, column_param= 2, confidence_interval=0.99)
 #'
-#' BC_param(Tara_Data,column_param=2,is_phyloseq=TRUE,confidence_interval=0.9)
+#' BC_param(df_abundance=DGBD::MOMv3.3, column_param=7, nls=TRUE)
 #'
 
 BC_param <- function(df_abundance=NULL,column_param=NULL,confidence_interval=0.95,nls=FALSE,nls_loop=1,nls_algo="lm",nls_control=list(scale = "more"),BC_rank_object=NULL,...){

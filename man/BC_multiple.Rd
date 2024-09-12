@@ -39,6 +39,6 @@ A data frame where each row represents a fitted DGBD. The first column stores th
 Basic wrapper for BC_plot and BC_report intended to be used for large data frames.
 }
 \examples{
-BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(1:3))
+BC_multiple(df_abundance=DGBD::MOMv3.3, columns_select_multiple = c(7:8))
 
 }

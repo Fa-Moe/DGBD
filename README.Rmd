@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 To cite this package:
 
-Moedano Vargas F, Alvarez Martinez R (2024). _DGBD: Discrete
+Moedano-Vargas F, Alvarez-Martinez R (2024). _DGBD: Discrete
 Generalized Beta Distribution Modeling and Plotting_. R package
 version 0.0.0.9004, <https://github.com/Fa-Moe/DGBD>.
 
@@ -39,7 +39,7 @@ Discrete Generalized Beta Distributions (DGBDs) provide a robust alternative for
 
 Beyond their applicability to Rank-Abundance Distributions, DGBDs are effective in modeling ordering distributions across a wide array of biological systems and disciplines. This versatility makes them an invaluable tool for researchers in fields such as ecology, demography, bibliometrics, and more. For an in-depth exploration of DGBDs, please refer to Martínez-Mekler et al. (2009) at https://doi.org/10.1371/journal.pone.0004791
 
-DGBDs are characterized by three parameters: 'A', 'a', and 'b'. This 'R' package facilitates fitting a DGBD to a given set of abundance data and reporting these parameters. It utilizes 'ggplot2' for visualizing the model.
+DGBDs are characterized by three parameters: **A**, **a**, and **b**. This 'R' package facilitates fitting a DGBD to a given set of abundance data and reporting these parameters. It utilizes 'ggplot2' for visualizing the model.
 
 
 ## Installation
@@ -56,16 +56,14 @@ Quickly analyze data frames and  philoseq-class objects.
 
 ```{r example}
 library(DGBD)
-<<<<<<< Updated upstream
-BC_report(Weblinks, column_report = 1, show_stats = F)
-BC_report(Billionaires, column_report = 1, show_stats = F,model_extra="S")
-BC_report(hmp_wgs, 2, show_stats = F,model_extra="R2",gfx_label_coords=c(50,1)) 
-=======
-#data("Billionaires")
-BC_plot(Billionaires,column_plot=2)
-BC_plot(df_abundance=DGBD::Weblinks, column_plot=2, rank_threshold=4, confidence_interval=0.985,suppress_messages=TRUE)
-#Tara_DGBD <- BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(3),plot_silent=T)
->>>>>>> Stashed changes
+
+BC_report(df_abundance=DGBD::Billionaires, column_report = 2, show_stats = F,model_extra="S")
+BC_report(df_abundance=DGBD::Citation_ISICatalogued, column_report = 2, show_stats = F,rank_threshold=1)
+BC_report(df_abundance=DGBD::hmp_wgs, 2, show_stats = F,model_extra="R2",gfx_label_coords=c(50,1)) 
+BC_report(df_abundance=DGBD::Weblinks, column_report=2, rank_threshold=4, confidence_interval=0.99)
+BC_report(df_abundance=DGBD::MOMv3, column_report=7)
+
+
 ```
 
 Generally the nls method is better at fitting the values on the left of the graph, while performing worse on the right side of the graph. BC_compare() can be used to compare both methods given a data set. The goodness of fit tends to stay the same or get better when using the nls method because the extremes are approximated better, however, most mid and low values accumulate more error. This "spreading out" effect might not be desirable, in which case the default method should be used.

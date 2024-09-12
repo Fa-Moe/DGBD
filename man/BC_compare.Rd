@@ -35,4 +35,5 @@ Creates a graph that illustrates error in the predictions of the linear and nls 
 \examples{
 BC_compare(hmp_wgs,2)
 
+BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")
 }

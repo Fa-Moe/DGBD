@@ -11,9 +11,9 @@
 #' @export
 #'
 #' @examples
-#' BC_report(hmp_wgs,2)
+#' BC_report(EC_Metabolite,2)
 #'
-#' BC_report(hmp_wgs,2,show_plot=FALSE,confidence_interval=0.99)
+#' BC_report(df_abundance=DGBD::MOMv3.3, column_report=7, show_stats=FALSE)
 #'
 #' BC_report(Tara_Data,2,is_phyloseq=TRUE)
 #'

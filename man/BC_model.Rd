@@ -22,10 +22,5 @@ A list with the following elements: The input data frame with added processed ra
 Uses the parameters calculated by \code{BC_param} to model a DGB distribution from the rank information in the data frame.
 }
 \examples{
-BC_model(hmp_wgs,2)
-
-BC_model(Tara_Data,column_model=1,is_phyloseq=TRUE)
-
-BC_model(Tara_Data,column_model=3,is_phyloseq=TRUE,confidence_interval=0.9)
-
+BC_model(df_abundance=DGBD::Citation_ISICatalogued, column_model = 2, show_stats = F,rank_threshold=1)[[6]]
 }

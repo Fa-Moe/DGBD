@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' BC_multiple(Tara_Data,is_phyloseq=TRUE,columns_select_multiple = c(1:3))
+#' BC_multiple(df_abundance=DGBD::MOMv3.3, columns_select_multiple = c(7:8))
 #'
 
 BC_multiple <- function(df_abundance, columns_select_multiple=NULL,is_phyloseq=FALSE,supress_messages=TRUE,report_only=FALSE,file_output_mode=FALSE,called_from_many=NULL, ...){

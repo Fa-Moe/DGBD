@@ -11,12 +11,7 @@
 #' @export
 #'
 #' @examples
-#' BC_model(hmp_wgs,2)
-#'
-#' BC_model(Tara_Data,column_model=1,is_phyloseq=TRUE)
-#'
-#' BC_model(Tara_Data,column_model=3,is_phyloseq=TRUE,confidence_interval=0.9)
-#'
+#' BC_model(df_abundance=DGBD::Citation_ISICatalogued, column_model = 2, show_stats = F,rank_threshold=1)[[6]]
 
 BC_model <- function(df_abundance=NULL,column_model=NULL,BC_param_object=NULL,...){
   if(!is.null(BC_param_object)){temp_data_list <- BC_param_object}
