@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' BC_model(df_abundance=DGBD::Citation_ISICatalogued, column_model = 2, show_stats = F,rank_threshold=1)[[6]]
+#' BC_model(Citation_ISICatalogued, column_model = 2, show_stats = F,rank_threshold=1)
 
 BC_model <- function(df_abundance=NULL,column_model=NULL,BC_param_object=NULL,...){
   if(!is.null(BC_param_object)){temp_data_list <- BC_param_object}

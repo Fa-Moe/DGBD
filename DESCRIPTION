@@ -12,8 +12,8 @@ Description: Process abundance data and estimate the parameters
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
-Date/Publication: 2024-08-31 05:15:00 UTC
+RoxygenNote: 7.3.2
+Date/Publication: 2024-09-17 18:15:00 UTC
 Imports: 
     ggplot2,
     phyloseq,
