@@ -15,9 +15,11 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-This package includes functions to assist in conducting a step-by-step DGBD modeling process. The guide will walk you through each stage, explaining the purpose of each function and demonstrating how to customize the analysis according to your specific needs.
 
-The `BC_rank` function imports frequency data from a specified data frame in your workspace and ranks it. You need to specify the `column_rank` parameter, which indicates the column containing the data you want to analyze. Once the ranking process is complete, the column is automatically labeled as **abundance** for smooth processing in subsequent stages.
+This package provides functions to help with the step-by-step DGBD modeling process. The guide will take you through each stage, explaining each function's purpose and how to customize the analysis to fit your specific needs.
+
+The `BC_rank` function imports frequency data from a specified data frame in your workspace and ranks it. You need to specify the `column_rank` parameter, which indicates the column containing the data you want to analyze. Once the ranking process is complete, the column is automatically labeled as abundance, relieving you of the manual task and ensuring smooth processing in subsequent stages.
+
 ```{r}
 library(DGBD)
 BC_rank(df_abundance=DGBD::Weblinks, column_rank=2)
@@ -33,7 +35,7 @@ BC_rank(df_abundance=DGBD::Weblinks, column_rank=2, rank_threshold=5) #In this e
 
 ```
 
-The `BC_param` function imports results from `BC_rank` and incorporates them into the model formula. It creates two new columns in the data frame, denoted as `pre_numerator` and `pre_denominator.` These columns undergo log transformation and are then used to fit a linear model, estimating the parameters 'A,' 'a', and 'b.' Subsequently, the parameters are linearized and made ready for reporting.
+The `BC_param` function imports results from the `BC_rank` function and includes them in the model formula. It adds two new columns to the data frame, labeled as `pre_numerator` and `pre_denominator.` These columns are then transformed using logarithms to build a linear model to estimate the parameters 'A,' 'a,' and 'b.' The output of this function is the linearized parameters, which are then prepared for reporting.
 
 ```{r}
 #BC_param will call BC_rank, and then go through the described process.
