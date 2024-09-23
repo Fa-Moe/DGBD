@@ -43,3 +43,6 @@ Phy_Citation[,3]<- as.numeric(Phy_Citation[,3])
 colnames(Phy_Citation)<-c("Volume","page number","Number of citations")
 #BC_plot(df_abundance = Phy_Citation, column_plot = 2)
 save(Phy_Citation,file="Phy_Citation.rda",compress = "xz")
+
+EC_Codon <- read.csv("../inst/extdata/EC_Codon.csv",header=TRUE,row.names=1)
+save(EC_Codon,file="EC_Codon.rda",compress = "xz")

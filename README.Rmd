@@ -52,23 +52,39 @@ devtools::install_github("Fa-Moe/DGBD")
 
 ## Usage
 
-Quickly analyze data frames and  philoseq-class objects.
+Quickly analyze data frames and  phyloseq-class objects.
 
-```{r example}
+```{r example0}
 library(DGBD)
 
 BC_report(df_abundance=DGBD::Billionaires, column_report = 2, show_stats = F,model_extra="S")
+
+```
+
+## Using custom data
+
+Data in .csv files can be easily provided for analysis. A similar method can be used for .tsv files with utils::read.table().
+
+```{r example1}
+example_path <- system.file("extdata", "EC_Codon.csv", package = "DGBD") #This is just a string of text with the path of the .csv file
+example_data <- read.csv(example_path,header=TRUE,row.names=1) #Your file might or might not have headers and row names.
+BC_report(example_data,column_report=1)
+```
+
+## Extra examples
+
+```{r example2}
 BC_report(df_abundance=DGBD::Citation_ISICatalogued, column_report = 2, show_stats = F,rank_threshold=1)
 BC_report(df_abundance=DGBD::hmp_wgs, 2, show_stats = F,model_extra="R2",gfx_label_coords=c(50,1)) 
 BC_report(df_abundance=DGBD::Weblinks, column_report=2, rank_threshold=4, confidence_interval=0.99)
-BC_report(df_abundance=DGBD::MOMv3, column_report=7)
+BC_report(df_abundance=DGBD::MOMv3.3, column_report=7)
 
 
 ```
 
 Generally the nls method is better at fitting the values on the left of the graph, while performing worse on the right side of the graph. BC_compare() can be used to compare both methods given a data set. The goodness of fit tends to stay the same or get better when using the nls method because the extremes are approximated better, however, most mid and low values accumulate more error. This "spreading out" effect might not be desirable, in which case the default method should be used.
 
-```{r example2}
-BC_compare(Ecoli_deg, column_compare = 2,model_extra="S")[[1]]
+```{r example3}
+BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")[[1]]
 
 ```

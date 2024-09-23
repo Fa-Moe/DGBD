@@ -54,7 +54,7 @@ devtools::install_github("Fa-Moe/DGBD")
 
 ## Usage
 
-Quickly analyze data frames and philoseq-class objects.
+Quickly analyze data frames and phyloseq-class objects.
 
 ``` r
 library(DGBD)
@@ -62,19 +62,41 @@ library(DGBD)
 BC_report(df_abundance=DGBD::Billionaires, column_report = 2, show_stats = F,model_extra="S")
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example0-1.png" width="100%" />
+
+## Using custom data
+
+Data in .csv files can be easily provided for analysis. A similar method
+can be used for .tsv files with utils::read.table().
+
+``` r
+example_path <- system.file("extdata", "EC_Codon.csv", package = "DGBD") #This is just a string of text with the path of the .csv file
+example_data <- read.csv(example_path,header=TRUE,row.names=1) #Your file might or might not have headers and row names.
+BC_report(example_data,column_report=1)
+#> [1] "The data fit the DGB distribution with parameters:"
+#>               A          a         b
+#> 2.5 %  38795.90 0.10674700 0.2377527
+#> 50 %   43297.55 0.08837031 0.2561294
+#> 97.5 % 48321.54 0.06999362 0.2745061
+#> [1] "And the fit has a MSE of:"
+#> [1] 7336183
+```
+
+<img src="man/figures/README-example1-1.png" width="100%" />
+
+## Extra examples
 
 ``` r
 BC_report(df_abundance=DGBD::Citation_ISICatalogued, column_report = 2, show_stats = F,rank_threshold=1)
 ```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example2-1.png" width="100%" />
 
 ``` r
 BC_report(df_abundance=DGBD::hmp_wgs, 2, show_stats = F,model_extra="R2",gfx_label_coords=c(50,1)) 
 ```
 
-<img src="man/figures/README-example-3.png" width="100%" />
+<img src="man/figures/README-example2-2.png" width="100%" />
 
 ``` r
 BC_report(df_abundance=DGBD::Weblinks, column_report=2, rank_threshold=4, confidence_interval=0.99)
@@ -87,10 +109,10 @@ BC_report(df_abundance=DGBD::Weblinks, column_report=2, rank_threshold=4, confid
 #> [1] 4.24174e+13
 ```
 
-<img src="man/figures/README-example-4.png" width="100%" />
+<img src="man/figures/README-example2-3.png" width="100%" />
 
 ``` r
-BC_report(df_abundance=DGBD::MOMv3, column_report=7)
+BC_report(df_abundance=DGBD::MOMv3.3, column_report=7)
 #> [1] "The data fit the DGB distribution with parameters:"
 #>               A         a         b
 #> 2.5 %  1.209095 0.2976284 0.3556487
@@ -100,20 +122,7 @@ BC_report(df_abundance=DGBD::MOMv3, column_report=7)
 #> [1] 0.4211116
 ```
 
-<img src="man/figures/README-example-5.png" width="100%" />
-
-``` r
-BC_report(Ecoli_deg,2)
-#> [1] "The data fit the DGB distribution with parameters:"
-#>                A        a           b
-#> 2.5 %   2070.538 2.421084 -0.46252036
-#> 50 %    5958.219 2.228363 -0.26979975
-#> 97.5 % 17145.482 2.035643 -0.07707913
-#> [1] "And the fit has a MSE of:"
-#> [1] 55127.8
-```
-
-<img src="man/figures/README-example-6.png" width="100%" />
+<img src="man/figures/README-example2-4.png" width="100%" />
 
 Generally the nls method is better at fitting the values on the left of
 the graph, while performing worse on the right side of the graph.
@@ -124,7 +133,7 @@ and low values accumulate more error. This “spreading out” effect might
 not be desirable, in which case the default method should be used.
 
 ``` r
-BC_compare(Ecoli_deg, column_compare = 2,model_extra="S")[[1]]
+BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")[[1]]
 ```
 
-<img src="man/figures/README-example2-1.png" width="100%" />
+<img src="man/figures/README-example3-1.png" width="100%" />

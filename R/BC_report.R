@@ -17,6 +17,9 @@
 #'
 #' BC_report(Tara_Data,2,is_phyloseq=TRUE)
 #'
+#' EC_codon_dir <- system.file("extdata", "EC_Codon.csv", package = "DGBD")
+#' EC_codon <- read.csv(EC_codon_dir,header=TRUE,row.names=1)
+#' BC_report(EC_codon, column_report=1)
 
 BC_report <- function(df_abundance=NULL,column_report=NULL,BC_plot_object=NULL,show_plot=TRUE,show_stats=TRUE,...){
   if(!is.null(BC_plot_object)){t_BCplot<- BC_plot_object}
