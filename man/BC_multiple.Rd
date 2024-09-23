@@ -41,4 +41,5 @@ Basic wrapper for BC_plot and BC_report intended to be used for large data frame
 \examples{
 BC_multiple(df_abundance=DGBD::MOMv3.3, columns_select_multiple = c(7:8))
 
+BC_multiple(df_abundance=DGBD::EC_Codon, model_extra="S",confint_col="#448666")
 }

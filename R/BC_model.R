@@ -1,6 +1,6 @@
 #' Predict Rank Abundance Distribution
 #'
-#' Uses the parameters calculated by \code{BC_param} to model a DGB distribution from the rank information in the data frame.
+#' Uses the parameters calculated by \code{BC_param} to model a DGB distribution (Mansilla et al. (2007) \doi{10.1016/j.joi.2007.01.001}) from the rank information in the data frame.
 #'
 #' @param df_abundance A data frame that contains abundance data.
 #' @param column_model Either a string with the name of the column or the number of the column that stores the abundances in the data frame.

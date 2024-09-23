@@ -19,7 +19,7 @@ BC_model(df_abundance = NULL, column_model = NULL, BC_param_object = NULL, ...)
 A list with the following elements: The input data frame with added processed ranking data, model data and confidence interval data, the adjusted parameters, the confidence interval of the parameters, the linear model, a summary of the model and a generated function for use with raw numeric data.
 }
 \description{
-Uses the parameters calculated by \code{BC_param} to model a DGB distribution from the rank information in the data frame.
+Uses the parameters calculated by \code{BC_param} to model a DGB distribution (Mansilla et al. (2007) \doi{10.1016/j.joi.2007.01.001}) from the rank information in the data frame.
 }
 \examples{
 BC_model(Citation_ISICatalogued, column_model = 2, show_stats = F,rank_threshold=1)

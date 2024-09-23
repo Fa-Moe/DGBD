@@ -39,4 +39,7 @@ BC_report(df_abundance=DGBD::MOMv3.3, column_report=7, show_stats=FALSE)
 
 BC_report(Tara_Data,2,is_phyloseq=TRUE)
 
+EC_codon_dir <- system.file("extdata", "EC_Codon.csv", package = "DGBD")
+EC_codon <- read.csv(EC_codon_dir,header=TRUE,row.names=1)
+BC_report(EC_codon, column_report=1)
 }

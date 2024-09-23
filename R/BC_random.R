@@ -1,6 +1,12 @@
 #' Generate random points on a DGB Distribution.
 #'
-#' Receives a set of parameters and generates a set of "x" ranking points that are uniformly random in a linear space and then calculates their expected "y" or abundance values.
+#' Receives a set of parameters and generates a set of "x" ranking points that
+#' are uniformly random in a linear space and then calculates their expected "y"
+#' or abundance values. Function derived from:
+#' Fontanelli, O., Miramontes, P., Mansilla, R., Cocho, G., & Li, W. (2022).
+#' Beta rank function: A smooth double-Pareto-like distribution. Communications
+#' in Statistics - Theory and Methods, 51(11), 3645–3668.
+#' https://doi.org/10.1080/03610926.2020.1800739
 #'
 #' @param parameters A numeric vector (A,a,b,max,n).
 #'

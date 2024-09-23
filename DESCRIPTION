@@ -1,19 +1,22 @@
 Package: DGBD
 Title: Discrete Generalized Beta Distribution Modeling and Plotting
-Version: 0.0.0.9004
+Version: 0.0.0.9005
 Authors@R: c(
     person(given="Francisco Farell",family="Moedano-Vargas", email="farell.mova@gmail.com", role = c("aut", "cph", "cre")),
     person(given="Roberto",family="Alvarez-Martinez",  role = c("aut", "cph"), comment = c(ORCID = "0002-0821-0067"))
     )   
 Description: Process abundance data and estimate the parameters
-    of a discrete generalized beta distribution (DGBD) (Martinez-Mekler et al., 2009) 
-    <doi:10.1371/journal.pone.0004791> that fits the data.
+    of a discrete generalized beta distribution (DGBD) that fits the data. This distribution
+    was first described in Mansilla et al. (2007).
+    <doi:10.1016/j.joi.2007.01.001>
+    and is further explored in Martinez-Mekler et al. (2009). 
+    <doi:10.1371/journal.pone.0004791>  
     Generates linear or non-linear model reports and uses 'ggplot2' to plot rank abundance diagrams.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Date/Publication: 2024-09-17 18:15:00 UTC
+Date/Publication: 2024-09-23 21:05:00 UTC
 Imports: 
     ggplot2,
     phyloseq,
