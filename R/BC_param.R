@@ -5,7 +5,7 @@
 #' The coefficients of the linear model are then scaled for future use.
 #'
 #' @param df_abundance A data frame that contains abundance data.
-#' @param column_param Either a string with the name of the column or the number of the column that stores the abundances in the data frame.
+#' @param column Either a string with the name of the column or the number of the column that stores the abundances in the data frame.
 #' @param confidence_interval Numeric. The confidence interval to calculate for the DGB distribution.
 #' @param nls Logical. Set to TRUE to use a non-linear least squares fitting method from the 'gslnls' package.
 #' @param nls_loop Numeric. Set to values higher than 1 to repeat the nls method as many times as needed, reseeding with the last value. This improves the fit with diminishing returns.
@@ -18,14 +18,14 @@
 #' @export
 #'
 #' @examples
-#' BC_param(df_abundance=DGBD::Billionaires, column_param= 2, confidence_interval=0.99)
+#' BC_param(df_abundance=DGBD::Billionaires, column= 2, confidence_interval=0.99)
 #'
-#' BC_param(df_abundance=DGBD::MOMv3.3, column_param=7, nls=TRUE)
+#' BC_param(df_abundance=DGBD::MOMv3.3, column=7, nls=TRUE)
 #'
 
-BC_param <- function(df_abundance=NULL,column_param=NULL,confidence_interval=0.95,nls=FALSE,nls_loop=1,nls_algo="lm",nls_control=list(scale = "more"),BC_rank_object=NULL,...){
+BC_param <- function(df_abundance=NULL,column=NULL,confidence_interval=0.95,nls=FALSE,nls_loop=1,nls_algo="lm",nls_control=list(scale = "more"),BC_rank_object=NULL,...){
   if(!is.null(BC_rank_object)){ranked_frame <- BC_rank_object}
-  else if (!is.null(df_abundance)){ranked_frame <- BC_rank(df_abundance,column_rank=column_param,...)}
+  else if (!is.null(df_abundance)){ranked_frame <- BC_rank(df_abundance,column=column,...)}
   else {stop("Neither an abundance data frame or a BC_param_object were provided")}
   r <- ranked_frame[,"BC_rank"]
   N <- max(r)

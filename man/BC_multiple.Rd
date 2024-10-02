@@ -6,7 +6,7 @@
 \usage{
 BC_multiple(
   df_abundance,
-  columns_select_multiple = NULL,
+  column = NULL,
   is_phyloseq = FALSE,
   supress_messages = TRUE,
   report_only = FALSE,
@@ -18,7 +18,7 @@ BC_multiple(
 \arguments{
 \item{df_abundance}{A data frame that contains abundance data.}
 
-\item{columns_select_multiple}{Optional. A vector that contains either column name strings or numeric column indices to be analyzed. By default includes all columns.}
+\item{column}{Optional. A vector that contains either column name strings or numeric column indices to be analyzed. By default includes all columns.}
 
 \item{is_phyloseq}{Logical, optional. Use if the object to be analysed has the phyloseq class.}
 
@@ -39,7 +39,7 @@ A data frame where each row represents a fitted DGBD. The first column stores th
 Basic wrapper for BC_plot and BC_report intended to be used for large data frames.
 }
 \examples{
-BC_multiple(df_abundance=DGBD::MOMv3.3, columns_select_multiple = c(7:8))
+BC_multiple(df_abundance=DGBD::MOMv3.3, column = c(7:8))
 
 BC_multiple(df_abundance=DGBD::EC_Codon, model_extra="S",confint_col="#448666")
 }

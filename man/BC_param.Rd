@@ -6,7 +6,7 @@
 \usage{
 BC_param(
   df_abundance = NULL,
-  column_param = NULL,
+  column = NULL,
   confidence_interval = 0.95,
   nls = FALSE,
   nls_loop = 1,
@@ -19,7 +19,7 @@ BC_param(
 \arguments{
 \item{df_abundance}{A data frame that contains abundance data.}
 
-\item{column_param}{Either a string with the name of the column or the number of the column that stores the abundances in the data frame.}
+\item{column}{Either a string with the name of the column or the number of the column that stores the abundances in the data frame.}
 
 \item{confidence_interval}{Numeric. The confidence interval to calculate for the DGB distribution.}
 
@@ -44,8 +44,8 @@ Estimates the parameters of the DGB distribution (also known as the Beta-Cocho d
 The coefficients of the linear model are then scaled for future use.
 }
 \examples{
-BC_param(df_abundance=DGBD::Billionaires, column_param= 2, confidence_interval=0.99)
+BC_param(df_abundance=DGBD::Billionaires, column= 2, confidence_interval=0.99)
 
-BC_param(df_abundance=DGBD::MOMv3.3, column_param=7, nls=TRUE)
+BC_param(df_abundance=DGBD::MOMv3.3, column=7, nls=TRUE)
 
 }

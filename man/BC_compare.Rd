@@ -6,7 +6,7 @@
 \usage{
 BC_compare(
   df_abundance = NULL,
-  column_compare = NULL,
+  column = NULL,
   BC_plot_list = NULL,
   c_gfx_title = "Linear vs nls model error",
   c_gfx_label = TRUE,
@@ -16,7 +16,7 @@ BC_compare(
 \arguments{
 \item{df_abundance}{A data frame that contains abundance data.}
 
-\item{column_compare}{Either a string with the name of the column or the number of the column that stores the abundances in the data frame.}
+\item{column}{Either a string with the name of the column or the number of the column that stores the abundances in the data frame.}
 
 \item{BC_plot_list}{A list that contains 2 objects previously generated with \code{BC_plot}. The first one must use the linear paramenters and the second one parameters estimated by the nls method.}
 
@@ -35,5 +35,5 @@ Creates a graph that illustrates error in the predictions of the linear and nls 
 \examples{
 BC_compare(hmp_wgs,2)
 
-BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")
+BC_compare(EC_Metabolite, column = 2,model_extra="S")
 }

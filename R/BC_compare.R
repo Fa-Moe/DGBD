@@ -4,7 +4,7 @@
 #'
 #'
 #' @param df_abundance A data frame that contains abundance data.
-#' @param column_compare Either a string with the name of the column or the number of the column that stores the abundances in the data frame.
+#' @param column Either a string with the name of the column or the number of the column that stores the abundances in the data frame.
 #' @param BC_plot_list A list that contains 2 objects previously generated with \code{BC_plot}. The first one must use the linear paramenters and the second one parameters estimated by the nls method.
 #' @param c_gfx_title String. Changes the title of the graph.
 #' @param c_gfx_label Logical. Adds a label that adds the model_extra data of both models. Defaults to true.
@@ -16,16 +16,16 @@
 #' @examples
 #' BC_compare(hmp_wgs,2)
 #'
-#' BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")
+#' BC_compare(EC_Metabolite, column = 2,model_extra="S")
 
-BC_compare <- function(df_abundance=NULL,column_compare=NULL,BC_plot_list=NULL,c_gfx_title="Linear vs nls model error",c_gfx_label=TRUE,...){
+BC_compare <- function(df_abundance=NULL,column=NULL,BC_plot_list=NULL,c_gfx_title="Linear vs nls model error",c_gfx_label=TRUE,...){
   if(!is.null(BC_plot_list)){
     naive <- BC_plot_list[[1]]
     nls_obj <- BC_plot_list[[2]]
     }
   else if (!is.null(df_abundance)){
-    naive <- BC_plot(df_abundance,column_plot=column_compare,...)
-    nls_obj <- BC_plot(df_abundance,column_plot=column_compare,nls=T,...)
+    naive <- BC_plot(df_abundance,column=column,...)
+    nls_obj <- BC_plot(df_abundance,column=column,nls=T,...)
     }
   else {stop("Neither an abundance data frame or a BC_plot_list were provided")}
   ys_data <-  data.frame(

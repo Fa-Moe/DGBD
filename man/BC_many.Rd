@@ -6,7 +6,7 @@
 \usage{
 BC_many(
   object_names,
-  columns_many_select = NULL,
+  column = NULL,
   use_paths = FALSE,
   is_phyloseq = FALSE,
   supress_messages_many = TRUE,
@@ -16,7 +16,7 @@ BC_many(
 \arguments{
 \item{object_names}{A vector containing the names of the objects to process.}
 
-\item{columns_many_select}{Optional. A list that contains vectors that indicate which columns to select for each processed object. Order must be matched with object_names.}
+\item{column}{Optional. A list that contains vectors that indicate which columns to select for each processed object. Order must be matched with object_names.}
 
 \item{use_paths}{Optional. Set to true when the object_names vector uses paths instead of loaded objects.}
 

@@ -4,20 +4,14 @@
 \alias{BC_rank}
 \title{Rank the Abundance from a File or Data Frame}
 \usage{
-BC_rank(
-  df_abundance,
-  column_rank,
-  rank_threshold = 0,
-  is_phyloseq = FALSE,
-  ...
-)
+BC_rank(df_abundance, column, rank_threshold = 0, is_phyloseq = FALSE, ...)
 }
 \arguments{
 \item{df_abundance}{The data frame to use. A string that contains a path can be used to load files.}
 
-\item{column_rank}{Can be either a string containing the name of the column or an int that is its index}
+\item{column}{Can be either a string containing the name of the column or an int that is its index}
 
-\item{rank_threshold}{Optional. Integer. Discards rows if their column_rank value is equal to or lower than it. Defaults to 0.}
+\item{rank_threshold}{Optional. Integer. Discards rows if their column value is equal to or lower than it. Defaults to 0.}
 
 \item{is_phyloseq}{Logical, optional. Use if the object to be analysed has the phyloseq class.}
 
@@ -27,10 +21,10 @@ BC_rank(
 The input data frame with a column appended to the left that stores the generated ranking. The column used for ranking is renamed "abundance".
 }
 \description{
-Sorts the df_abundance dataframe by the given column_rank column.
+Sorts the df_abundance dataframe by the given column argument.
 }
 \examples{
-BC_rank(df_abundance=DGBD::Weblinks, column_rank=2, rank_threshold=4)
+BC_rank(df_abundance=DGBD::Weblinks, column=2, rank_threshold=4)
 
 BC_rank(Tara_Data,3,is_phyloseq=TRUE)
 

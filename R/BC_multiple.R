@@ -3,7 +3,7 @@
 #' Basic wrapper for BC_plot and BC_report intended to be used for large data frames.
 #'
 #' @param df_abundance A data frame that contains abundance data.
-#' @param columns_select_multiple Optional. A vector that contains either column name strings or numeric column indices to be analyzed. By default includes all columns.
+#' @param column Optional. A vector that contains either column name strings or numeric column indices to be analyzed. By default includes all columns.
 #' @param is_phyloseq Logical, optional. Use if the object to be analysed has the phyloseq class.
 #' @param supress_messages Logical. Allows to skip messages that detail how many samples have been processed. Also stops the resulting data frame from being printed. Defaults to true.
 #' @param report_only Logical. Use to output a data frame without the BC_plot object, intended to reduce the size of the output for large analyses. Defaults to false.
@@ -15,18 +15,18 @@
 #' @export
 #'
 #' @examples
-#' BC_multiple(df_abundance=DGBD::MOMv3.3, columns_select_multiple = c(7:8))
+#' BC_multiple(df_abundance=DGBD::MOMv3.3, column = c(7:8))
 #'
 #' BC_multiple(df_abundance=DGBD::EC_Codon, model_extra="S",confint_col="#448666")
 
-BC_multiple <- function(df_abundance, columns_select_multiple=NULL,is_phyloseq=FALSE,supress_messages=TRUE,report_only=FALSE,file_output_mode=FALSE,called_from_many=NULL, ...){
+BC_multiple <- function(df_abundance, column=NULL,is_phyloseq=FALSE,supress_messages=TRUE,report_only=FALSE,file_output_mode=FALSE,called_from_many=NULL, ...){
   df_abundance <- BC_file_format_handler(df_abundance,is_phyloseq,...)
-  if(!is.null(columns_select_multiple))
+  if(!is.null(column))
     {
-    abundance_samples <- columns_select_multiple
-    if (is.numeric(columns_select_multiple[1])&!is.null(colnames(df_abundance)))
+    abundance_samples <- column
+    if (is.numeric(column[1])&!is.null(colnames(df_abundance)))
       {
-      abundance_samples <- colnames(df_abundance)[columns_select_multiple]
+      abundance_samples <- colnames(df_abundance)[column]
       }
     }
   else if (!is.null(colnames(df_abundance))){abundance_samples <- colnames(df_abundance)}
