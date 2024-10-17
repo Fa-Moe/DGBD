@@ -63,7 +63,7 @@ BC_report(df_abundance=DGBD::Billionaires, column_report = 2, show_stats = F,mod
 ## Using custom data
 
 Data in .csv files can be easily provided for analysis. A similar method
-can be used for .tsv files with utils::read.table().
+can be used for .tsv files with `utils::read.table()`.
 
 ``` r
 example_path <- system.file("extdata", "EC_Codon.csv", package = "DGBD") #This is just a string of text with the path of the .csv file
@@ -120,13 +120,8 @@ BC_report(df_abundance=DGBD::MOMv3.3, column_report=7)
 
 <img src="man/figures/README-example2-4.png" width="100%" />
 
-Generally the nls method is better at fitting the values on the left of
-the graph, while performing worse on the right side of the graph.
-BC_compare() can be used to compare both methods given a data set. The
-goodness of fit tends to stay the same or get better when using the nls
-method because the extremes are approximated better, however, most mid
-and low values accumulate more error. This “spreading out” effect might
-not be desirable, in which case the default method should be used.
+
+Generally, the nls method demonstrates superior performance in fitting values on the left side of the graph, but exhibits diminished accuracy on the right side. The `BC_compare()` function facilitates a comparison between both methods for a given dataset. While the goodness of fit often remains constant or improves with the nls method due to its enhanced approximation of extreme values, it introduces increased error in the mid and low ranges. This dispersion effect may be undesirable, in which case the default method is preferable.
 
 ``` r
 BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")[[1]]
