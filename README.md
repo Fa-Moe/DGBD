@@ -31,21 +31,14 @@ distribution’s tail ends. While additional parameters can sometimes
 enhance power-law models, DGBDs inherently offer a superior fit for
 these critical tail regions.
 
-Beyond their applicability to Rank-Abundance Distributions, DGBDs are
-effective in modeling ordering distributions across a wide array of
-biological systems and disciplines. This versatility makes them an
-invaluable tool for researchers in fields such as ecology, demography,
-bibliometrics, and more. For an in-depth exploration of DGBDs, please
-refer to Martínez-Mekler et al. (2009) at
-<https://doi.org/10.1371/journal.pone.0004791>
+
 
 DGBDs are not only useful for Rank-Abundance Distributions but also excel in modeling ordered distributions across diverse biological systems and other disciplines. Their versatility makes them a valuable tool for researchers in fields such as ecology, demography, and bibliometrics. For a comprehensive exploration of DGBDs, see Martínez-Mekler et al. (2009) at <https://doi.org/10.1371/journal.pone.0004791> 
+
 The flexibility of DGBDs allows their application in the analysis of various hierarchical structures, such as species abundance, city populations, or citation patterns in scientific literature. These distributions can provide insights into the underlying mechanisms and patterns of complex systems, offering a unified approach for understanding diverse phenomena across different fields. By employing DGBDs, researchers can uncover similarities and differences in the organization of seemingly unrelated systems, potentially leading to new hypotheses and interdisciplinary collaborations. 
 
-DGBDs are characterized by three parameters: **A**, **a**, and **b**.
-This ‘R’ package facilitates fitting a DGBD to a given set of abundance
-data and reporting these parameters. It utilizes ‘ggplot2’ for
-visualizing the model.
+
+The DGBDs are defined by three parameters: **A**, **a**, and **b**. This R package streamlines the process of fitting a DGBD model to a given set of abundance data, and provides estimates for these parameters. Additionally, it leverages ‘ggplot2’ to visualize the model results. The flexibility of DGBDs allows for the modeling of various types of rank-abundance relationships, from linear to highly curved distributions. This versatility makes them particularly useful in fields such as ecology, linguistics, and network science, in which complex hierarchical structures are common. Moreover, the package's integration with 'ggplot2' enables researchers to create publication-quality visualizations, facilitating the communication of results and patterns discovered through DGBD analysis. 
 
 ## Installation
 
