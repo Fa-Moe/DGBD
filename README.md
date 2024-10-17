@@ -121,7 +121,8 @@ BC_report(df_abundance=DGBD::MOMv3.3, column_report=7)
 <img src="man/figures/README-example2-4.png" width="100%" />
 
 
-Generally, the nls method demonstrates superior performance in fitting values on the left side of the graph, but exhibits diminished accuracy on the right side. The `BC_compare()` function facilitates a comparison between both methods for a given dataset. While the goodness of fit often remains constant or improves with the nls method due to its enhanced approximation of extreme values, it introduces increased error in the mid and low ranges. This dispersion effect may be undesirable, in which case the default method is preferable.
+
+Generally, the nls method demonstrates superior performance in fitting values on the left side of the graph but exhibits diminished accuracy on the right side. The `BC_compare()`  function facilitates a comparison between the two methods for a given dataset. Although the goodness of fit often remains constant or improves with the nls method because of its enhanced approximation of extreme values, it introduces increased error in the mid and low ranges. This dispersion effect may be undesirable, in which case, the default method is preferable.
 
 ``` r
 BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")[[1]]
