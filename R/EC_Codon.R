@@ -1,6 +1,6 @@
 #' EC_Codon.
 #'
-#' The codon frequency of a dozen different strains of Eschericia coli.
+#' The codon frequency of a dozen different strains of Escherichia coli.
 #'
 #' @format ## `EC_Codon`
 #' Data frame that contains.

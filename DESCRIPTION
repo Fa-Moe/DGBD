@@ -26,7 +26,7 @@ Imports:
 Depends: 
     R (>= 3.5.0)
 LazyData: true
-URL: https://github.com/Fa-Moe/DGBD
+URL: https://github.com/Fa-Moe/DGBD, https://fa-moe.github.io/DGBD/
 BugReports: https://github.com/Fa-Moe/DGBD/issues
 Suggests: 
     knitr,

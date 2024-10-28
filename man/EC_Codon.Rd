@@ -32,7 +32,7 @@ Data frame that contains.
 EC_Codon
 }
 \description{
-The codon frequency of a dozen different strains of Eschericia coli.
+The codon frequency of a dozen different strains of Escherichia coli.
 }
 \details{
 "Pending citation"

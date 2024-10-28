@@ -11,7 +11,7 @@
 To cite this package:
 
 Moedano-Vargas F, Alvarez-Martinez R (2024). *DGBD: Discrete Generalized
-Beta Distribution Modeling and Plotting*. R package version 0.0.0.9004,
+Beta Distribution Modeling and Plotting*. R package version 0.0.0.9006,
 <https://github.com/Fa-Moe/DGBD>.
 
 To obtain a BibTeX entry, you can run:
@@ -55,7 +55,7 @@ Quickly analyze data frames and phyloseq-class objects.
 ``` r
 library(DGBD)
 
-BC_report(df_abundance=DGBD::Billionaires, column_report = 2, show_stats = F,model_extra="S")
+BC_report(df_abundance=DGBD::Billionaires, column = 2, show_stats = F, model_extra = "S")
 ```
 
 <img src="man/figures/README-example0-1.png" width="100%" />
@@ -68,7 +68,7 @@ can be used for .tsv files with `utils::read.table()`.
 ``` r
 example_path <- system.file("extdata", "EC_Codon.csv", package = "DGBD") #This is just a string of text with the path of the .csv file
 example_data <- read.csv(example_path,header=TRUE,row.names=1) #Your file might or might not have headers and row names.
-BC_report(example_data,column_report=1)
+BC_report(example_data, column = 1)
 #> [1] "The data fit the DGB distribution with parameters:"
 #>               A          a         b
 #> 2.5 %  38795.90 0.10674700 0.2377527
@@ -83,7 +83,7 @@ BC_report(example_data,column_report=1)
 ## Extra examples
 
 ``` r
-BC_report(df_abundance=DGBD::Citation_ISICatalogued, column_report = 2, show_stats = F,rank_threshold=1)
+BC_report(df_abundance=DGBD::Citation_ISICatalogued, column = 2, show_stats = F,rank_threshold=1)
 ```
 
 <img src="man/figures/README-example2-1.png" width="100%" />
@@ -95,7 +95,7 @@ BC_report(df_abundance=DGBD::hmp_wgs, 2, show_stats = F,model_extra="R2",gfx_lab
 <img src="man/figures/README-example2-2.png" width="100%" />
 
 ``` r
-BC_report(df_abundance=DGBD::Weblinks, column_report=2, rank_threshold=4, confidence_interval=0.99)
+BC_report(df_abundance=DGBD::Weblinks, column=2, rank_threshold=4, confidence_interval=0.99)
 #> [1] "The data fit the DGB distribution with parameters:"
 #>                A        a           b
 #> 0.5 %  708982440 2.184956 -0.03184022
@@ -108,7 +108,7 @@ BC_report(df_abundance=DGBD::Weblinks, column_report=2, rank_threshold=4, confid
 <img src="man/figures/README-example2-3.png" width="100%" />
 
 ``` r
-BC_report(df_abundance=DGBD::MOMv3.3, column_report=7)
+BC_report(df_abundance=DGBD::MOMv3.3, column=7)
 #> [1] "The data fit the DGB distribution with parameters:"
 #>               A         a         b
 #> 2.5 %  1.209095 0.2976284 0.3556487
@@ -125,7 +125,7 @@ BC_report(df_abundance=DGBD::MOMv3.3, column_report=7)
 Generally, the nls method demonstrates superior performance in fitting values on the left side of the graph but exhibits diminished accuracy on the right side. The `BC_compare()`  function facilitates a comparison between the two methods for a given dataset. Although the goodness of fit often remains constant or improves with the nls method because of its enhanced approximation of extreme values, it introduces increased error in the mid and low ranges. This dispersion effect may be undesirable, in which case, the default method is preferable.
 
 ``` r
-BC_compare(EC_Metabolite, column_compare = 2,model_extra="S")[[1]]
+BC_compare(EC_Metabolite, column = 2,model_extra="S")[[1]]
 ```
 
 <img src="man/figures/README-example3-1.png" width="100%" />
