@@ -6,8 +6,6 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-## Citation
-
 To cite this package:
 
 Moedano-Vargas F, Alvarez-Martinez R (2024). *DGBD: Discrete Generalized
