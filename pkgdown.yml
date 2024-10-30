@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   DGBD_Vignette: DGBD_Vignette.html
-last_built: 2024-10-30T15:51Z
+last_built: 2024-10-30T15:54Z
 urls:
   reference: https://fa-moe.github.io/DGBD/reference
   article: https://fa-moe.github.io/DGBD/articles
