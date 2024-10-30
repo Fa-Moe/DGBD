@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# DGBD <img src="inst/figures/DGBD.png" alt="DGBD hexSticker" align="right" width = "25%" height="25%"/>
+# DGBD <img src="inst/figures/DGBD.png" align="right" width = "25%" height="25%"/>
 
 <!-- badges: start -->
 <!-- badges: end -->
