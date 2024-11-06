@@ -10,13 +10,17 @@
 #' @param c_gfx_label Logical. Adds a label that adds the model_extra data of both models. Defaults to true.
 #' @param ... passes arguments to \code{BC_plot}.
 #'
-#' @return A list with that includes a data frame with difference data between predicted and real values and
+#' @return A list with that includes a graph and a data frame with difference data between predicted and real values per model.
 #' @export
 #'
 #' @examples
-#' BC_compare(hmp_wgs,2)
+#' comparehmp_wgs <- BC_compare(hmp_wgs,2)
+#' comparehmp_wgs[[1]]
+#' head(comparehmp_wgs[[2]])
 #'
-#' BC_compare(EC_Metabolite, column = 2,model_extra="S")
+#' compareEC_Metabolite <- BC_compare(EC_Metabolite, column = 2,model_extra="S")
+#' compareEC_Metabolite[[1]]
+#' head(compareEC_Metabolite[[2]])
 
 BC_compare <- function(df_abundance=NULL,column=NULL,BC_plot_list=NULL,c_gfx_title="Linear vs nls model error",c_gfx_label=TRUE,...){
   if(!is.null(BC_plot_list)){

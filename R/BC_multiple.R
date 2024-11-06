@@ -17,7 +17,7 @@
 #' @examples
 #' BC_multiple(df_abundance=DGBD::MOMv3.3, column = c(7:8))
 #'
-#' BC_multiple(df_abundance=DGBD::EC_Codon, model_extra="S",confint_col="#448666")
+#' BC_multiple(df_abundance=DGBD::EC_Codon, model_extra="S",confint_col="#448666",show_stats=FALSE)
 
 BC_multiple <- function(df_abundance, column=NULL,is_phyloseq=FALSE,supress_messages=TRUE,report_only=FALSE,file_output_mode=FALSE,called_from_many=NULL, ...){
   df_abundance <- BC_file_format_handler(df_abundance,is_phyloseq,...)

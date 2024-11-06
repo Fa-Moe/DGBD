@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 This package provides functions to help with the step-by-step DGBD modeling process. The guide will take you through each stage, explaining each function's purpose and how to customize the analysis to fit your specific needs.
 
+## BC_rank()
+
 The `BC_rank` function imports frequency data from a specified data frame in your workspace and ranks it. You need to specify the `column` parameter, which indicates the column containing the data you want to analyze. Once the ranking process is complete, the column is automatically labeled as abundance, relieving you of the manual task and ensuring smooth processing in subsequent stages.
 
 ```{r}
@@ -26,14 +28,18 @@ BC_rank(df_abundance=DGBD::Weblinks, column=2)
 
 #We can also refer to the column by name
 BC_rank(df_abundance=DGBD::Weblinks, column="frequency")
-
-#Because the starting data is further analyzed with logarithms, any 0 or negative data points are automatically discarded.
-#Sometimes, it might be useful to exclude other values. The "rank_threshold" argument keeps only data points higher than the threshold.
-BC_rank(df_abundance=DGBD::Weblinks, column=2, rank_threshold=5) #In this example, all data points equal to or lesser than 5 will be discarded.
-
-#The BC_rank function supports 'phyloseq' objects with the argument is_phyloseq=T
-
 ```
+
+Because the starting data is further analyzed with logarithms, any 0 or negative data points are automatically discarded.
+Sometimes, it might be useful to exclude other values. The "rank_threshold" argument keeps only data points higher than the threshold.
+
+```{r}
+BC_rank(df_abundance=DGBD::Weblinks, column=2, rank_threshold=5) #In this example, all data points equal to or lesser than 5 will be discarded.
+```
+
+The BC_rank function supports 'phyloseq' objects with the argument is_phyloseq=T
+
+## BC_param()
 
 The `BC_param` function imports results from the `BC_rank` function and includes them in the model formula. It adds two new columns to the data frame, labeled as `pre_numerator` and `pre_denominator.` These columns are then transformed using logarithms to build a linear model to estimate the parameters 'A,' 'a,' and 'b.' The output of this function is the linearized parameters, which are then prepared for reporting.
 
@@ -76,6 +82,8 @@ BC_param(                                       nls=TRUE, nls_algo="dogleg",nls_
 #In the event that neither earlier functions called with the corresponding arguments or the BC_x_object call show errors, the problem could lie within the interaction of the current call and the specific data set.
 ```
 
+## BC_model()
+
 BC_model() requests the parameters and ranking data (our independent variable) from BC_param(). It then predicts the abundance values (the dependent variable). Any non greater than 0 prediction is replaced by .Machine$double.eps. in order to proceed with the plotting. This can be seen as a sharp bend in the plot. In that case, all stat values such as the MSE are not valid, and a different rank_threshold value should be used or the data set isn't approximated by a DGBD. BC_model() builds a handy function too, that given a rank, predicts an abundance value. This can be useful to predict mid values, or a bigger ranking (i. e. a ranking=26 not seen data point in a 25 point data set).
 
 ```{r}
@@ -83,6 +91,8 @@ BC_model(df_abundance=DGBD::Weblinks, column=2) #Most functions output lists wit
 BC_model(df_abundance=DGBD::Weblinks, column=2)[[6]](25.5) #In this case, we can call the constructed function like so.
 
 ```
+
+## BC_plot()
 
 BC_plot()'s main function is generating a visualization of our model. It uses the 'ggplot2' package. BC_plot() outputs a list that contains much of the data processing steps, which can be of interest.
 
@@ -116,6 +126,8 @@ BC_plot(df_abundance=DGBD::Weblinks, column=2, confint=TRUE,confint_col="#018666
 BC_plot(df_abundance=DGBD::Weblinks, column=2,gfx_alpha=0.9,gfx_title="My Graph",gfx_label=TRUE,gfx_label_coords=c(15,15),gfx_xy_trans=c("log10","log10"),gfx_theme=ggplot2::theme_bw())
 ```
 
+## BC_report()
+
 BC_report() doesn't continue the data processing steps. Instead, it discards most previous "middle" information and just formats a quick minimal summary of the DGBD model.
 
 ```{r}
@@ -125,6 +137,8 @@ BC_report(df_abundance=DGBD::Weblinks, column=2)
 
 BC_report(BC_plot_object=temp,show_plot=FALSE,show_stats=FALSE) #Notice the BC_x_object substitution. When the DGBD analysis takes too long (which could happen if the data frame is big). Calling BC_report() means calling all other functions from BC_rank() and redoing everything. BC_x_object substitution avoids spending computer resources in the same task.
 ```
+
+## BC_compare()
 
 BC_compare() takes a single dataset, but does 2 DGBD analyses. One of them is linear, and the other is non-linear. The error for both models and their model_extra data are plotted, which can help us know which model more closely follows the data, and in which regions it does so. In order to plot the error, first the absolute of the error is taken, and then 1 is added to it. After that, it is passed through log10(). abs() is used to know the magnitude of the error, and one is added so that all plotted error is non-negative. Adding 1 to the error also ensures that 0 error at that point in the model will be plotted as 0. The log10() transform is useful because the error at the left side of the model is often magnitudes bigger than the error at the right.
 
@@ -137,6 +151,8 @@ BC_compare(df_abundance=DGBD::Weblinks, column=2, nls_algo="dogleg",nls_control=
 #"c_gfx" options allow changing the title and label in the graphic. The model_extra argument is particularly useful for this function. 
 BC_compare(df_abundance=DGBD::Weblinks, column=2, c_gfx_title="BC_comparison",c_gfx_label=TRUE, model_extra="S")
 ```
+
+## BC_multiple()
 
 Sometimes, we have to analyze many datasets at once. BC_multiple() is capable of analyzing many datasets that are contained in a single data frame, as columns. By default, all columns are analyzed.
 
@@ -163,6 +179,8 @@ BC_multiple(df_abundance=DGBD::Weblinks, file_output_mode=TRUE) #This saves each
 #as a WARNING: The file_output_mode=TRUE has to be done in an empty directory! If 2 file_output_mode=TRUE call's are performed on the same directory, data will be overwritten and permanently lost!
 ```
 
+## BC_many()
+
 As BC_multiple() has limitations, such as only acting on a single data frame, or having to be executed in empty directories (with file_output_mode=TRUE), BC_many() is provided. BC_many() will execute BC_multiple() on an arbitrary number of R objects or directories.
 
 ```{r}
@@ -172,4 +190,14 @@ links <- DGBD::Weblinks
 ex_names <- c("species","links") #Names or paths are provided as vectors. When providing paths to .csv files (or other files), use_paths=TRUE has to be provided as an argument for BC_many(). 
 ex_columns <- list(c(1,2),2)     #When declaring columns, a list containing a vector for each name is needed.
 BC_many(object_names=ex_names, columns_many_select=ex_columns) #By default, supress_messages_many=TRUE is provided. Setting it to FALSE will allow posting the progress along to the objects to the console.
+```
+
+## Using custom data
+
+Data in .csv files can be easily provided for analysis. A similar method can be used for .tsv files with utils::read.table().
+
+```{r example1}
+example_path <- system.file("extdata", "EC_Codon.csv", package = "DGBD") #This is just a string of text with the path of the .csv file
+example_data <- read.csv(example_path,header=TRUE,row.names=1) #Your file might or might not have headers and row names.
+BC_report(example_data, column = 1)
 ```

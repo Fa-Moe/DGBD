@@ -24,5 +24,6 @@ Uses the parameters calculated by \code{BC_param} to model a DGB distribution (M
 \examples{
 modelISISCatalogued <- BC_model(Citation_ISICatalogued, column = 2, show_stats = F,rank_threshold=1)
 head(modelISISCatalogued[[1]])
+modelISISCatalogued[[6]](45)
 modelISISCatalogued[2:6]
 }

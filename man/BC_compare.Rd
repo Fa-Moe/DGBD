@@ -27,13 +27,17 @@ BC_compare(
 \item{...}{passes arguments to \code{BC_plot}.}
 }
 \value{
-A list with that includes a data frame with difference data between predicted and real values and
+A list with that includes a graph and a data frame with difference data between predicted and real values per model.
 }
 \description{
 Creates a graph that illustrates error in the predictions of the linear and nls models for quick comparison. The y axis is the difference between the predicted value and the original abundance value. This value is then made absolute and 1 is added before taking its logarithm. The addition of 1 keeps a difference of 0 as 0 in the plot and prevents a small decimal linear difference from becoming a large difference in the plot. The x axis is the rank for that given error. This allows us to see where in the distribution each model performs better or worse.
 }
 \examples{
-BC_compare(hmp_wgs,2)
+comparehmp_wgs <- BC_compare(hmp_wgs,2)
+comparehmp_wgs[[1]]
+head(comparehmp_wgs[[2]])
 
-BC_compare(EC_Metabolite, column = 2,model_extra="S")
+compareEC_Metabolite <- BC_compare(EC_Metabolite, column = 2,model_extra="S")
+compareEC_Metabolite[[1]]
+head(compareEC_Metabolite[[2]])
 }

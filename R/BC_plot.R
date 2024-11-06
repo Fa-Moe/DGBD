@@ -31,7 +31,8 @@
 #' @export
 #'
 #' @examples
-#' plotWeblinks <- BC_plot(Weblinks, column=2, rank_threshold=4,confint=FALSE,confrange=FALSE,plot_silent=TRUE)
+#' plotWeblinks <- BC_plot(Weblinks, column=2,
+#'  rank_threshold=4,confint=FALSE,confrange=FALSE,plot_silent=TRUE)
 #' head(plotWeblinks[[1]])
 #' plotWeblinks[2:8]
 #'
@@ -39,7 +40,8 @@
 #' head(plothmp_wgs[[1]])
 #' plothmp_wgs[2:8]
 #'
-#' plotBillionaires <- BC_plot(Billionaires, column= 2, gfx_xy_trans=c("log10","log10"),plot_silent=TRUE)
+#' plotBillionaires <- BC_plot(Billionaires, column= 2,
+#'  gfx_xy_trans=c("log10","log10"),plot_silent=TRUE)
 #' head(plotBillionaires[[1]])
 #' plotBillionaires[2:8]
 

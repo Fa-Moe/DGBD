@@ -35,5 +35,5 @@ Analyses N objects using \code{BC_multiple} in sequence.
 \examples{
 to_analyze <- c("Weblinks","Billionaires","MOMv3.3")
 columns_to_use <-list(2,2,c(7,8))
-BC_many(to_analyze,columns_to_use)
+BC_many(to_analyze,columns_to_use,show_stats=FALSE)
 }
