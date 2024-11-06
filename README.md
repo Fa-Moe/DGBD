@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DGBD <img src="DGBD.png" align="right" width = "25%" height="25%"/>
+# DGBD <img src="man/figures/DGBD.png" alt="DGBDhexSticker" align="right" width = "25%" height="25%"/>
 
 <!-- badges: start -->
 <!-- badges: end -->

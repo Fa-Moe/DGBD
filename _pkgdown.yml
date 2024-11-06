@@ -2,3 +2,7 @@ url: https://fa-moe.github.io/DGBD/
 template:
   bootstrap: 5
   bootswatch: minty
+  opengraph:
+    image:
+      src: man/figures/DGBD.png
+      alt: "DGBDhexSticker"
