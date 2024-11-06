@@ -69,6 +69,9 @@
 modeling process. The guide will take you through each stage, explaining
 each function’s purpose and how to customize the analysis to fit your
 specific needs.</p>
+<div class="section level2">
+<h2 id="bc_rank">BC_rank()<a class="anchor" aria-label="anchor" href="#bc_rank"></a>
+</h2>
 <p>The <code>BC_rank</code> function imports frequency data from a
 specified data frame in your workspace and ranks it. You need to specify
 the <code>column</code> parameter, which indicates the column containing
@@ -80,13 +83,19 @@ manual task and ensuring smooth processing in subsequent stages.</p>
 <span><span class="fu"><a href="../reference/BC_rank.html">BC_rank</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#We can also refer to the column by name</span></span>
-<span><span class="fu"><a href="../reference/BC_rank.html">BC_rank</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="st">"frequency"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#Because the starting data is further analyzed with logarithms, any 0 or negative data points are automatically discarded.</span></span>
-<span><span class="co">#Sometimes, it might be useful to exclude other values. The "rank_threshold" argument keeps only data points higher than the threshold.</span></span>
-<span><span class="fu"><a href="../reference/BC_rank.html">BC_rank</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, rank_threshold<span class="op">=</span><span class="fl">5</span><span class="op">)</span> <span class="co">#In this example, all data points equal to or lesser than 5 will be discarded.</span></span>
-<span></span>
-<span><span class="co">#The BC_rank function supports 'phyloseq' objects with the argument is_phyloseq=T</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/BC_rank.html">BC_rank</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="st">"frequency"</span><span class="op">)</span></span></code></pre></div>
+<p>Because the starting data is further analyzed with logarithms, any 0
+or negative data points are automatically discarded. Sometimes, it might
+be useful to exclude other values. The “rank_threshold” argument keeps
+only data points higher than the threshold.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_rank.html">BC_rank</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, rank_threshold<span class="op">=</span><span class="fl">5</span><span class="op">)</span> <span class="co">#In this example, all data points equal to or lesser than 5 will be discarded.</span></span></code></pre></div>
+<p>The BC_rank function supports ‘phyloseq’ objects with the argument
+is_phyloseq=T</p>
+</div>
+<div class="section level2">
+<h2 id="bc_param">BC_param()<a class="anchor" aria-label="anchor" href="#bc_param"></a>
+</h2>
 <p>The <code>BC_param</code> function imports results from the
 <code>BC_rank</code> function and includes them in the model formula. It
 adds two new columns to the data frame, labeled as
@@ -94,7 +103,7 @@ adds two new columns to the data frame, labeled as
 columns are then transformed using logarithms to build a linear model to
 estimate the parameters ‘A,’ ‘a,’ and ‘b.’ The output of this function
 is the linearized parameters, which are then prepared for reporting.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#BC_param will call BC_rank, and then go through the described process.</span></span>
 <span><span class="fu"><a href="../reference/BC_param.html">BC_param</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span></span>
@@ -124,7 +133,7 @@ functions, so most functions are provided a “BC_x_object” argument. This
 argument can be used instead of an abundance data frame and skips the
 call to earlier functions, so if the error persists, we know it lies
 within the current call. As an example:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#We will intentionally cause an error within BC_rank, as we call a phyloseq object without the proper arguments. However, this particular BC_param() call might be hard to debug because we have included many arguments which could be the cause of the error.  </span></span>
 <span><span class="fu"><a href="../reference/BC_param.html">BC_param</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Tara_Data.html">Tara_Data</a></span>, column<span class="op">=</span><span class="fl">2</span>, rank_threshold<span class="op">=</span><span class="fl">3</span>, nls<span class="op">=</span><span class="cn">TRUE</span>, nls_algo<span class="op">=</span><span class="st">"dogleg"</span>,nls_control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>maxiter<span class="op">=</span><span class="fl">70</span>, scale<span class="op">=</span><span class="st">"levenberg"</span><span class="op">)</span>,confidence_interval<span class="op">=</span><span class="fl">0.99</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: phyloseq</span></span>
@@ -138,6 +147,10 @@ within the current call. As an example:</p>
 <span><span class="co">#Notice that we had to move the rank_threshold argument to the BC_rank call, in order to imitate the original call's process.</span></span>
 <span></span>
 <span><span class="co">#In the event that neither earlier functions called with the corresponding arguments or the BC_x_object call show errors, the problem could lie within the interaction of the current call and the specific data set.</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="bc_model">BC_model()<a class="anchor" aria-label="anchor" href="#bc_model"></a>
+</h2>
 <p>BC_model() requests the parameters and ranking data (our independent
 variable) from BC_param(). It then predicts the abundance values (the
 dependent variable). Any non greater than 0 prediction is replaced by
@@ -148,21 +161,25 @@ used or the data set isn’t approximated by a DGBD. BC_model() builds a
 handy function too, that given a rank, predicts an abundance value. This
 can be useful to predict mid values, or a bigger ranking (i. e. a
 ranking=26 not seen data point in a 25 point data set).</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_model.html">BC_model</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="co">#Most functions output lists with a variety of elements related to all previous steps and the current process being done.</span></span>
 <span><span class="fu"><a href="../reference/BC_model.html">BC_model</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span><span class="op">(</span><span class="fl">25.5</span><span class="op">)</span> <span class="co">#In this case, we can call the constructed function like so.</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="bc_plot">BC_plot()<a class="anchor" aria-label="anchor" href="#bc_plot"></a>
+</h2>
 <p>BC_plot()‘s main function is generating a visualization of our model.
 It uses the ’ggplot2’ package. BC_plot() outputs a list that contains
 much of the data processing steps, which can be of interest.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="co">#This is the minimal function call.</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="co">#This is the minimal function call.</span></span></code></pre></div>
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#Previous functions arguments can be used</span></span>
 <span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, rank_threshold<span class="op">=</span><span class="fl">4</span>, confidence_interval<span class="op">=</span><span class="fl">0.985</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#When working in a script, sometimes it might be desirable not send the plot as an output to the graphical device.</span></span>
 <span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, plot_silent<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
@@ -171,43 +188,51 @@ much of the data processing steps, which can be of interest.</p>
 <span></span>
 <span><span class="co">#"obs" arguments change how the observed data points look.</span></span>
 <span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>,obs<span class="op">=</span><span class="cn">TRUE</span>,obs_shape<span class="op">=</span><span class="fl">4</span>,obs_col<span class="op">=</span><span class="st">"#aa9fff"</span>,obs_size<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-3.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-3.png" width="700"></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#To not plot the data points</span></span>
 <span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>,obs<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-4.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-4.png" width="700"></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#"model" arguments change the predicted values line.</span></span>
 <span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, model<span class="op">=</span><span class="cn">TRUE</span>,model_col<span class="op">=</span><span class="st">"#aaff00"</span>,model_width<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-5.png" width="700"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-5.png" width="700"></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#"model_extra" changes the error measurement to compare different fits. The "R2" measurement is not recommended for non-linear relationships (DGBD's are linear only when a=b=1)</span></span>
 <span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, model_extra<span class="op">=</span><span class="st">"S"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-6.png" width="700"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-6.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#"confint" arguments change the appearance of the confidence intervals, and the confidence interval range (which you might not want to plot, as it alters the color of the model line).</span></span>
 <span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, confint<span class="op">=</span><span class="cn">TRUE</span>,confint_col<span class="op">=</span><span class="st">"#018666"</span>,confint_width<span class="op">=</span><span class="fl">0.5</span>,confrange<span class="op">=</span><span class="cn">TRUE</span>,confrange_col<span class="op">=</span><span class="st">"#ffff78"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-7.png" width="700"></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-7.png" width="700"></p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#"gfx" arguments changes other elements of the graph, such as the alpha of all objects, the title, whether to plot a label or not, where, the scales and the background color</span></span>
 <span><span class="fu"><a href="../reference/BC_plot.html">BC_plot</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>,gfx_alpha<span class="op">=</span><span class="fl">0.9</span>,gfx_title<span class="op">=</span><span class="st">"My Graph"</span>,gfx_label<span class="op">=</span><span class="cn">TRUE</span>,gfx_label_coords<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>,<span class="fl">15</span><span class="op">)</span>,gfx_xy_trans<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"log10"</span>,<span class="st">"log10"</span><span class="op">)</span>,gfx_theme<span class="op">=</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-6-8.png" width="700"></p>
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-8.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="bc_report">BC_report()<a class="anchor" aria-label="anchor" href="#bc_report"></a>
+</h2>
 <p>BC_report() doesn’t continue the data processing steps. Instead, it
 discards most previous “middle” information and just formats a quick
 minimal summary of the DGBD model.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_report.html">BC_report</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_report.html">BC_report</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#If desirable, we can force silent outputs (not print to console or graphical devices)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/BC_report.html">BC_report</a></span><span class="op">(</span>BC_plot_object<span class="op">=</span><span class="va">temp</span>,show_plot<span class="op">=</span><span class="cn">FALSE</span>,show_stats<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co">#Notice the BC_x_object substitution. When the DGBD analysis takes too long (which could happen if the data frame is big). Calling BC_report() means calling all other functions from BC_rank() and redoing everything. BC_x_object substitution avoids spending computer resources in the same task.</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="bc_compare">BC_compare()<a class="anchor" aria-label="anchor" href="#bc_compare"></a>
+</h2>
 <p>BC_compare() takes a single dataset, but does 2 DGBD analyses. One of
 them is linear, and the other is non-linear. The error for both models
 and their model_extra data are plotted, which can help us know which
@@ -219,66 +244,87 @@ plotted error is non-negative. Adding 1 to the error also ensures that 0
 error at that point in the model will be plotted as 0. The log10()
 transform is useful because the error at the left side of the model is
 often magnitudes bigger than the error at the right.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_compare.html">BC_compare</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/BC_compare.html">BC_compare</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#nls arguments can be provided. Note: avoid nls=True, as that would conflict with the linear analysis.</span></span>
 <span><span class="fu"><a href="../reference/BC_compare.html">BC_compare</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, nls_algo<span class="op">=</span><span class="st">"dogleg"</span>,nls_control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>maxiter<span class="op">=</span><span class="fl">70</span>, scale<span class="op">=</span><span class="st">"levenberg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-8-2.png" width="700"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#"c_gfx" options allow changing the title and label in the graphic. The model_extra argument is particularly useful for this function. </span></span>
 <span><span class="fu"><a href="../reference/BC_compare.html">BC_compare</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, column<span class="op">=</span><span class="fl">2</span>, c_gfx_title<span class="op">=</span><span class="st">"BC_comparison"</span>,c_gfx_label<span class="op">=</span><span class="cn">TRUE</span>, model_extra<span class="op">=</span><span class="st">"S"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-8-3.png" width="700"></p>
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-3.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="bc_multiple">BC_multiple()<a class="anchor" aria-label="anchor" href="#bc_multiple"></a>
+</h2>
 <p>Sometimes, we have to analyze many datasets at once. BC_multiple() is
 capable of analyzing many datasets that are contained in a single data
 frame, as columns. By default, all columns are analyzed.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../reference/BC_multiple.html">BC_multiple</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-1.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-1.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-2.png" width="700"></p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#But that would error if there is a single non-data column (like a string column).</span></span>
 <span></span>
 <span><span class="co">#Therefore, they can be explicitly stated by a vector:</span></span>
 <span><span class="fu"><a href="../reference/BC_multiple.html">BC_multiple</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>,columns_select_multiple<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-3.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-4.png" width="700"></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-3.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-4.png" width="700"></p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#is_phyloseq has to be provided when appropiate, to first analyze the dimensions of the data frame before calling each individual analysis.</span></span>
 <span><span class="co">#Because the function is designed to operate on many datasets, console spam is common. Therefore, by default the supress_messages=TRUE argument is provided. </span></span>
 <span><span class="fu"><a href="../reference/BC_multiple.html">BC_multiple</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>,supress_messages<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co">#Allows output.</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-5.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-6.png" width="700"></p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-5.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-6.png" width="700"></p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#By default, the functions output stores both a BC_plot() and a BC_summary() object per analysis, which stores duplicated data and might overwhelm the system resources.</span></span>
 <span><span class="fu"><a href="../reference/BC_multiple.html">BC_multiple</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>,report_only<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="co">#Allows only storing the smaller summary object.</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-7.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-8.png" width="700"></p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-7.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-8.png" width="700"></p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="co">#In the event that the previous option still overwhelms the system, or when lengthy operations are performed (and it is desired to save progress along each step, instead of only at the end of the process), the next call is desired:</span></span>
 <span><span class="fu"><a href="../reference/BC_multiple.html">BC_multiple</a></span><span class="op">(</span>df_abundance<span class="op">=</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span>, file_output_mode<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="co">#This saves each graph as soon as it is generated. A single data frame containing the parameters is generated only at the end of the analysis. However, this method takes far less resources, as graphs aren't stored in the R environment.</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-9.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-9-10.png" width="700"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-9.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-10.png" width="700"></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="co">#as a WARNING: The file_output_mode=TRUE has to be done in an empty directory! If 2 file_output_mode=TRUE call's are performed on the same directory, data will be overwritten and permanently lost!</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="bc_many">BC_many()<a class="anchor" aria-label="anchor" href="#bc_many"></a>
+</h2>
 <p>As BC_multiple() has limitations, such as only acting on a single
 data frame, or having to be executed in empty directories (with
 file_output_mode=TRUE), BC_many() is provided. BC_many() will execute
 BC_multiple() on an arbitrary number of R objects or directories.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">species</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>abundance1<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">45</span>,<span class="fl">746</span>,<span class="fl">42</span>,<span class="fl">5</span>,<span class="fl">1243</span>,<span class="fl">1</span>,<span class="fl">24</span><span class="op">)</span>,</span>
 <span>                       abundance2<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">7</span>,<span class="fl">36</span>,<span class="fl">136</span>,<span class="fl">22</span>,<span class="fl">1</span>,<span class="fl">1843</span>,<span class="fl">4</span>,<span class="fl">54</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">links</span> <span class="op">&lt;-</span> <span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="../reference/Weblinks.html">Weblinks</a></span></span>
 <span><span class="va">ex_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"species"</span>,<span class="st">"links"</span><span class="op">)</span> <span class="co">#Names or paths are provided as vectors. When providing paths to .csv files (or other files), use_paths=TRUE has to be provided as an argument for BC_many(). </span></span>
 <span><span class="va">ex_columns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>     <span class="co">#When declaring columns, a list containing a vector for each name is needed.</span></span>
 <span><span class="fu"><a href="../reference/BC_many.html">BC_many</a></span><span class="op">(</span>object_names<span class="op">=</span><span class="va">ex_names</span>, columns_many_select<span class="op">=</span><span class="va">ex_columns</span><span class="op">)</span> <span class="co">#By default, supress_messages_many=TRUE is provided. Setting it to FALSE will allow posting the progress along to the objects to the console.</span></span></code></pre></div>
-<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-1.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-2.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-3.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-10-4.png" width="700"></p>
-  </main>
+<p><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-11-1.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-11-2.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-11-3.png" width="700"><img src="DGBD_Vignette_files/figure-html/unnamed-chunk-11-4.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="using-custom-data">Using custom data<a class="anchor" aria-label="anchor" href="#using-custom-data"></a>
+</h2>
+<p>Data in .csv files can be easily provided for analysis. A similar
+method can be used for .tsv files with utils::read.table().</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">example_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"EC_Codon.csv"</span>, package <span class="op">=</span> <span class="st">"DGBD"</span><span class="op">)</span> <span class="co">#This is just a string of text with the path of the .csv file</span></span>
+<span><span class="va">example_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">example_path</span>,header<span class="op">=</span><span class="cn">TRUE</span>,row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="co">#Your file might or might not have headers and row names.</span></span>
+<span><span class="fu"><a href="../reference/BC_report.html">BC_report</a></span><span class="op">(</span><span class="va">example_data</span>, column <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<p><img src="DGBD_Vignette_files/figure-html/example1-1.png" width="700"></p>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
