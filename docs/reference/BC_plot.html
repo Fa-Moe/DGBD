@@ -181,11 +181,227 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">BC_plot</span><span class="op">(</span><span class="va">Weblinks</span>, column<span class="op">=</span><span class="fl">2</span>, rank_threshold<span class="op">=</span><span class="fl">4</span>,confint<span class="op">=</span><span class="cn">FALSE</span>,confrange<span class="op">=</span><span class="cn">FALSE</span>,plot_silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">plotWeblinks</span> <span class="op">&lt;-</span> <span class="fu">BC_plot</span><span class="op">(</span><span class="va">Weblinks</span>, column<span class="op">=</span><span class="fl">2</span>, rank_threshold<span class="op">=</span><span class="fl">4</span>,confint<span class="op">=</span><span class="cn">FALSE</span>,confrange<span class="op">=</span><span class="cn">FALSE</span>,plot_silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">plotWeblinks</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   pre_numerator pre_denominator       lwr predicted_values       upr BC_rank</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          5306               3  51485548         52114228  52750584       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          5308               1 564836866        573002863 581286917       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          5307               2 124625256        126250120 127896169       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          5305               4  27497261         27816930  28140315       4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5304               5  16904524         17093390  17284366       5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          5303               6  11359769         11482490  11606537       6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   degree abundance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      0  35159835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      1 106649769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      2  40711748</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      3  22648832</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      4  12617832</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      5   8188854</span>
+<span class="r-in"><span><span class="va">plotWeblinks</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             A             a             b </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  7.357629e+08  2.182266e+00 -2.914983e-02 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     2.5 %        97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  7.152981e+08  7.568132e+08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_den      2.184312e+00  2.180219e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_num     -3.119669e-02 -2.710297e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> stats::lm(formula = log_abundance ~ log_den + log_num)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      log_den      log_num  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    20.41642     -2.18227     -0.02915  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> stats::lm(formula = log_abundance ~ log_den + log_num)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -1.68134 -0.03974 -0.00297  0.03298  0.16958 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error  t value Pr(&gt;|t|)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 20.416419   0.014389  1418.88   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_den     -2.182266   0.001044 -2090.10   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_num     -0.029150   0.001044   -27.92   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 0.05765 on 5305 degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.9993,	Adjusted R-squared:  0.9993 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 3.706e+06 on 2 and 5305 DF,  p-value: &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> function (rank) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     params["A"] * (max(t_frame[, "BC_rank"]) + 1 - rank)^params["b"]/(rank^params["a"])</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x7fd2768&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0xef02778&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
+<span class="r-plt img"><img src="BC_plot-1.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[7]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MSE"              "42417404085421.2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">BC_plot</span><span class="op">(</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="hmp_wgs.html">hmp_wgs</a></span>,<span class="fl">2</span>,obs<span class="op">=</span><span class="cn">FALSE</span>,plot_silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">plothmp_wgs</span> <span class="op">&lt;-</span> <span class="fu">BC_plot</span><span class="op">(</span><span class="fu">DGBD</span><span class="fu">::</span><span class="va"><a href="hmp_wgs.html">hmp_wgs</a></span>,<span class="fl">2</span>,obs<span class="op">=</span><span class="cn">FALSE</span>,plot_silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">plothmp_wgs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   pre_numerator pre_denominator          lwr predicted_values          upr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            12             189   0.00191929       0.00255945   0.00341313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            91             110  67.60535356      79.64205011  93.82180274</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            52             149   4.28061625       5.03017084   5.91097571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           126              75 296.89124035     349.15112822 410.60999372</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           199               2 228.90175484     409.49230806 732.55860566</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6           160              41 715.69574563     845.63422804 999.16375359</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   BC_rank    PID    abundance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     189 M00171 8.052846e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     110 M00175 8.754249e+01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     149 M00174 1.134126e+01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      75 M00170 1.973639e+02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       2 M00178 1.193010e+03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      41 M00359 6.899719e+02</span>
+<span class="r-in"><span><span class="va">plothmp_wgs</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             A             a             b </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2.018236e-10 -6.208510e-01  5.272359e+00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     2.5 %        97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  4.591541e-11  8.871265e-10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_den     -4.345076e-01 -8.071944e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_num      5.086016e+00  5.458703e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> stats::lm(formula = log_abundance ~ log_den + log_num)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      log_den      log_num  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    -22.3236       0.6209       5.2724  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> stats::lm(formula = log_abundance ~ log_den + log_num)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -10.8372  -0.2644  -0.0805   0.2879   2.0649 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -22.32363    0.75078  -29.73  &lt; 2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_den       0.62085    0.09449    6.57 4.37e-10 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_num       5.27236    0.09449   55.80  &lt; 2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 0.9312 on 197 degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.9618,	Adjusted R-squared:  0.9614 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic:  2480 on 2 and 197 DF,  p-value: &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> function (rank) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     params["A"] * (max(t_frame[, "BC_rank"]) + 1 - rank)^params["b"]/(rank^params["a"])</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x7fd2768&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0xe96bb78&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
+<span class="r-plt img"><img src="BC_plot-2.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[7]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MSE"              "24311.9761699429"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">BC_plot</span><span class="op">(</span><span class="va">Billionaires</span>, column<span class="op">=</span> <span class="fl">2</span>, gfx_xy_trans<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"log10"</span>,<span class="st">"log10"</span><span class="op">)</span>,plot_silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">plotBillionaires</span> <span class="op">&lt;-</span> <span class="fu">BC_plot</span><span class="op">(</span><span class="va">Billionaires</span>, column<span class="op">=</span> <span class="fl">2</span>, gfx_xy_trans<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"log10"</span>,<span class="st">"log10"</span><span class="op">)</span>,plot_silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">plotBillionaires</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   pre_numerator pre_denominator      lwr predicted_values      upr BC_rank rank</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          2640               1 499598.6         509496.8 519591.1       1    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2639               2 299827.5         305121.5 310509.0       2    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          2638               3 222405.7         226053.8 229761.6       3    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          2637               4 179927.4         182719.2 185554.3       4    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          2636               5 152648.8         154912.8 157210.3       5    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          2635               6 133459.1         135363.9 137295.9       6    6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   abundance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    211000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    180000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    114000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    107000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    106000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    104000</span>
+<span class="r-in"><span><span class="va">plotBillionaires</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            A            a            b </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.946909e+05 7.396223e-01 1.221052e-01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    2.5 %       97.5 %</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.872674e+05 2.024087e+05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_den     7.427259e-01 7.365187e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_num     1.190017e-01 1.252088e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> stats::lm(formula = log_abundance ~ log_den + log_num)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      log_den      log_num  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     12.1792      -0.7396       0.1221  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> stats::lm(formula = log_abundance ~ log_den + log_num)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Min       1Q   Median       3Q      Max </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.88157 -0.03868  0.00415  0.03921  0.55573 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 12.179169   0.019826  614.31   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_den     -0.739622   0.001583 -467.30   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_num      0.122105   0.001583   77.15   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Residual standard error: 0.06127 on 2637 degrees of freedom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Multiple R-squared:  0.9944,	Adjusted R-squared:  0.9944 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> F-statistic: 2.355e+05 on 2 and 2637 DF,  p-value: &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[5]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> function (rank) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     params["A"] * (max(t_frame[, "BC_rank"]) + 1 - rank)^params["b"]/(rank^params["a"])</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;bytecode: 0x7fd2768&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x15515df0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[6]]</span>
+<span class="r-plt img"><img src="BC_plot-3.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[7]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MSE"              "48507852.7641689"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

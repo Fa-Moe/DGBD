@@ -11,7 +11,9 @@
 #' @export
 #'
 #' @examples
-#' BC_model(Citation_ISICatalogued, column = 2, show_stats = F,rank_threshold=1)
+#' modelISISCatalogued <- BC_model(Citation_ISICatalogued, column = 2, show_stats = F,rank_threshold=1)
+#' head(modelISISCatalogued[[1]])
+#' modelISISCatalogued[2:6]
 
 BC_model <- function(df_abundance=NULL,column=NULL,BC_param_object=NULL,...){
   if(!is.null(BC_param_object)){temp_data_list <- BC_param_object}

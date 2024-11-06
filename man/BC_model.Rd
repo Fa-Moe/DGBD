@@ -22,5 +22,7 @@ A list with the following elements: The input data frame with added processed ra
 Uses the parameters calculated by \code{BC_param} to model a DGB distribution (Mansilla et al. (2007) \doi{10.1016/j.joi.2007.01.001}) from the rank information in the data frame.
 }
 \examples{
-BC_model(Citation_ISICatalogued, column = 2, show_stats = F,rank_threshold=1)
+modelISISCatalogued <- BC_model(Citation_ISICatalogued, column = 2, show_stats = F,rank_threshold=1)
+head(modelISISCatalogued[[1]])
+modelISISCatalogued[2:6]
 }

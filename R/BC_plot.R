@@ -31,11 +31,17 @@
 #' @export
 #'
 #' @examples
-#' BC_plot(Weblinks, column=2, rank_threshold=4,confint=FALSE,confrange=FALSE,plot_silent=TRUE)
+#' plotWeblinks <- BC_plot(Weblinks, column=2, rank_threshold=4,confint=FALSE,confrange=FALSE,plot_silent=TRUE)
+#' head(plotWeblinks[[1]])
+#' plotWeblinks[2:8]
 #'
-#' BC_plot(DGBD::hmp_wgs,2,obs=FALSE,plot_silent=TRUE)
+#' plothmp_wgs <- BC_plot(DGBD::hmp_wgs,2,obs=FALSE,plot_silent=TRUE)
+#' head(plothmp_wgs[[1]])
+#' plothmp_wgs[2:8]
 #'
-#' BC_plot(Billionaires, column= 2, gfx_xy_trans=c("log10","log10"),plot_silent=TRUE)
+#' plotBillionaires <- BC_plot(Billionaires, column= 2, gfx_xy_trans=c("log10","log10"),plot_silent=TRUE)
+#' head(plotBillionaires[[1]])
+#' plotBillionaires[2:8]
 
 BC_plot <- function(df_abundance=NULL,column=NULL,BC_model_object=NULL,obs=TRUE,obs_shape=16,obs_col="#78a7ff",obs_size=1,model=TRUE,model_col="#000000",model_width=0.5,model_extra="MSE",confint=TRUE,confint_col="#ed8666",confint_width=1,confrange=TRUE,confrange_col="#ffd078",gfx_alpha=0.75,gfx_title="Rank-Abundance Diagram",gfx_label=TRUE,gfx_label_coords=NULL,gfx_xy_trans=c("identity","log10"),gfx_theme=ggplot2::theme_gray(),plot_silent=FALSE,...){
   if(!is.null(BC_model_object)){temp_model <- BC_model_object}

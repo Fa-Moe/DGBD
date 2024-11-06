@@ -13,13 +13,8 @@
 #' @export
 #'
 #' @examples
-#' species1 <- data.frame(abundance1=c(1,2,23,12,421,34,1,24,124))
-#' species2 <- data.frame(abundance1=c(3,5,45,746,42,5,1243,1,24),
-#'                       abundance2=c(2,7,36,136,22,1,1843,4,54))
-#' species3 <- data.frame(abundance=c(12,42,23,22,12,1,4,2,3,4),
-#'                       abundance2=c(8,45,14,13,64,32,75,43,25,2))
-#' to_analyze <- c("species1","species2","species3")
-#' columns_to_use <-list(1,c(1,2),2)
+#' to_analyze <- c("Weblinks","Billionaires","MOMv3.3")
+#' columns_to_use <-list(2,2,c(7,8))
 #' BC_many(to_analyze,columns_to_use)
 
 BC_many <- function(object_names,column=NULL,use_paths=FALSE,is_phyloseq=FALSE,supress_messages_many=TRUE,...){

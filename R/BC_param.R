@@ -18,9 +18,13 @@
 #' @export
 #'
 #' @examples
-#' BC_param(df_abundance=DGBD::Billionaires, column= 2, confidence_interval=0.99)
+#' paramBillionaires <- BC_param(df_abundance=DGBD::Billionaires, column= 2, confidence_interval=0.99)
+#' head(paramBillionaires[[1]])
+#' paramBillionaires[2:5]
 #'
-#' BC_param(df_abundance=DGBD::MOMv3.3, column=7, nls=TRUE)
+#' paramMOMv3.3 <- BC_param(df_abundance=DGBD::MOMv3.3, column=7, nls=TRUE)
+#' head(paramMOMv3.3[[1]])
+#' paramMOMv3.3[2:5]
 #'
 
 BC_param <- function(df_abundance=NULL,column=NULL,confidence_interval=0.95,nls=FALSE,nls_loop=1,nls_algo="lm",nls_control=list(scale = "more"),BC_rank_object=NULL,...){

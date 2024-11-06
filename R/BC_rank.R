@@ -12,10 +12,11 @@
 #' @export
 #'
 #' @examples
-#' BC_rank(df_abundance=DGBD::Weblinks, column=2, rank_threshold=4)
+#' rankedWeblinks <- BC_rank(df_abundance=DGBD::Weblinks, column=2, rank_threshold=4)
+#' head(rankedWeblinks)
 #'
-#' BC_rank(Tara_Data,3,is_phyloseq=TRUE)
-#'
+#' rankedTara <- BC_rank(Tara_Data,3,is_phyloseq=TRUE)
+#' head(rankedTara)
 
 BC_rank <- function(df_abundance,column,rank_threshold=0,is_phyloseq=FALSE,...){
   df_abundance <-BC_file_format_handler(df_abundance,is_phyloseq,...)

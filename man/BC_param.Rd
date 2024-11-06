@@ -44,8 +44,12 @@ Estimates the parameters of the DGB distribution (also known as the Beta-Cocho d
 The coefficients of the linear model are then scaled for future use.
 }
 \examples{
-BC_param(df_abundance=DGBD::Billionaires, column= 2, confidence_interval=0.99)
+paramBillionaires <- BC_param(df_abundance=DGBD::Billionaires, column= 2, confidence_interval=0.99)
+head(paramBillionaires[[1]])
+paramBillionaires[2:5]
 
-BC_param(df_abundance=DGBD::MOMv3.3, column=7, nls=TRUE)
+paramMOMv3.3 <- BC_param(df_abundance=DGBD::MOMv3.3, column=7, nls=TRUE)
+head(paramMOMv3.3[[1]])
+paramMOMv3.3[2:5]
 
 }
