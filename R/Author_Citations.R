@@ -13,7 +13,7 @@
 #'   ...
 #' }
 #'
-#' @details " 'This data covers all publications from ISI catalogued journals 
+#' @details " This data covers all publications from ISI catalogued journals 
 #' from January 1981 - June 1997 and was compiled by H. Small and D. Pendlebury
 #' of the Institute for Scientific Information. This file includes several 
 #' corrections to the data originally supplied by the ISI: missing decimal 
